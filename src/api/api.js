@@ -1,0 +1,52 @@
+import Axios from './index';
+
+// 获取验证码
+export const getCode = (data) => {
+  return Axios({
+    url: 'https://health.hangzhou.gov.cn/health2/user/api/sms/sendCode',
+    method: 'post',
+    headers: {
+      'content-type': 'application/json',
+    },
+    data,
+  });
+};
+
+//登录
+export const verifyCode = (data) => {
+  return Axios({
+    url: 'https://health.hangzhou.gov.cn/health2/user/api/sms/verifyCode',
+    method: 'post',
+    headers: {
+      'content-type': 'application/json',
+    },
+    data,
+  });
+};
+
+//验证token有效
+export const checkToken = (token) => {
+  return Axios({
+    url:
+      'https://health.hangzhou.gov.cn/health2/user//api/v1/oauth2/checkToken',
+    method: 'post',
+    headers: {
+      'content-type': 'application/json',
+      'health2-token': token,
+    },
+    // data,
+  });
+};
+
+export const refresh = (token) => {
+  return Axios({
+    url:
+      'https://health.hangzhou.gov.cn/health2/user/api/v1/oauth2/token/refresh',
+    method: 'post',
+    headers: {
+      'content-type': 'application/json',
+      'health2-token': token,
+    },
+    // data,
+  });
+};
