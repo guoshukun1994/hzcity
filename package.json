@@ -27,8 +27,11 @@
     "react-native-reanimated": "^1.8.0",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.5.0",
+    "react-native-shadow": "^1.2.2",
+    "react-native-shadow-cards": "^1.0.2",
     "react-native-splash-screen": "^3.2.0",
     "react-native-storage": "^1.0.1",
+    "react-native-svg": "^12.1.0",
     "react-native-swiper": "^1.6.0",
     "react-native-webview": "^9.2.1"
   },

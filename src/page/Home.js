@@ -11,10 +11,10 @@ import {
   ImageBackground,
 } from 'react-native';
 import 'react-native-gesture-handler';
+import {Card} from 'react-native-shadow-cards';
 import storage from '../store/index';
 import {Tip} from 'beeshell';
 import Swiper from 'react-native-swiper';
-
 import {getNewsList} from '../api/api';
 // 方式一： API 调用
 export default class Home extends React.Component {
@@ -77,6 +77,7 @@ export default class Home extends React.Component {
   };
   render() {
     const {navigation} = this.props;
+
     return (
       <View style={{flex: 1, backgroundColor: '#fff'}}>
         <View style={{height: 283}}>
@@ -132,37 +133,41 @@ export default class Home extends React.Component {
         <View
           style={{
             flexDirection: 'row',
-            justifyContent: 'space-around',
-            backgroundColor: '#fff',
             marginHorizontal: 16,
-
+            borderRadius: 10,
             marginTop: -40,
-            borderWidth: 1,
-            borderColor: 'gray',
-            // shadowOffset:1
           }}>
-          <TouchableOpacity
+          <Card
             style={{
-              height: 94,
-              justifyContent: 'center',
-              alignItems: 'center',
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              backgroundColor: '#fff',
+              borderRadius: 10,
             }}>
-            <Image
-              style={{height: 50, width: 50}}
-              source={require('@/assets/healthIcon.png')}></Image>
-            <Text style={{fontSize: 12}}>健康码</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              height: 94,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Image
-              style={{height: 50, width: 50}}
-              source={require('@/assets/peopleIcon.png')}></Image>
-            <Text style={{fontSize: 12}}>健康码</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                height: 94,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Image
+                style={{height: 50, width: 50}}
+                source={require('@/assets/healthIcon.png')}></Image>
+              <Text style={{fontSize: 12}}>健康码</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                height: 94,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Image
+                style={{height: 50, width: 50}}
+                source={require('@/assets/peopleIcon.png')}></Image>
+              <Text style={{fontSize: 12}}>民意直通车</Text>
+            </TouchableOpacity>
+          </Card>
         </View>
         <ScrollView style={{paddingHorizontal: 16, flex: 1}}>
           <View

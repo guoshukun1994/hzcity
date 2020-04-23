@@ -1,6 +1,6 @@
 import 'react-native-get-random-values';
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Text, Image, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, Button, Image, View} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -14,6 +14,9 @@ import {
   Personal,
   People,
 } from './src/index';
+import storage from './src/store/index';
+import {checkToken} from '@/api/api';
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +30,7 @@ export default class App extends React.Component {
     const NavFootTab = () => {
       return (
         <Tab.Navigator
-          screenOptions={({route}) => ({
+          screenOptions={({route, navigation}) => ({
             tabBarIcon: ({focused, color, size}) => {
               if (route.name === 'Home') {
                 if (focused) {
@@ -87,6 +90,47 @@ export default class App extends React.Component {
                 }
               }
             },
+            tabBarButton: (props) => (
+              <TouchableOpacity
+                {...props}
+                onPress={async () => {
+                  console.log('nava', navigation);
+
+                  // console.log('route', route);
+                  if (route.name === 'HealthCode' || route.name === 'People') {
+                    console.log('进到这里');
+
+                    storage
+                      .load({key: 'token'})
+                      .then(async (token) => {
+                        if (token) {
+                          const checkResult = await checkToken(
+                            token.accessToken,
+                          );
+                          console.log(checkResult);
+                          console.log('tokne', token);
+                          if (!checkResult.success) {
+                            navigation.push('Login', {
+                              nextRoute: route.name,
+                            });
+                          } else {
+                            navigation.navigate(route.name);
+                          }
+                        } else {
+                          navigation.push('Login', {
+                            nextRoute: route.name,
+                          });
+                        }
+                      })
+                      .catch((e) => {
+                        navigation.push('Login', {nextRoute: route.name});
+                      });
+                  } else {
+                    navigation.navigate(route.name);
+                  }
+                }}
+              />
+            ),
           })}
           tabBarOptions={{
             activeTintColor: '#000',
@@ -133,8 +177,9 @@ export default class App extends React.Component {
           <Stack.Screen
             name="Login"
             component={Login}
+            // options={Login.navigationOptions}
             options={{
-              title: '手机号登录',
+              title: '登录',
               headerStyle: {
                 backgroundColor: '#fff',
               },

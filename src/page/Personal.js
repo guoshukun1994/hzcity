@@ -68,6 +68,9 @@ export default class Personal extends React.Component {
         <TouchableOpacity
           style={{
             alignItems: 'center',
+          }}
+          onPress={() => {
+            navigation.jumpTo('HealthCode', {token: 9999});
           }}>
           <Text style={{textAlign: 'center', color: '#818180', marginTop: 30}}>
             退出登录

@@ -14,56 +14,85 @@ import storage from '../store/index';
 import {Tip} from 'beeshell';
 import SplashScreen from 'react-native-splash-screen';
 import {WebView} from 'react-native-webview';
-
+import {checkToken} from '@/api/api';
 // 方式一： API 调用
 export default class HealthCode extends React.Component {
   constructor(p) {
     super(p);
-    this.state = {};
+    this.state = {
+      token: '',
+    };
   }
-  async componentDidMount() {
+  componentDidMount() {
     const {navigation} = this.props;
-    try {
-      const token = await storage.load({key: 'token'}); //检查是否有token,如果有token
-      if (token) {
-        const checkResult = checkToken(token.accessToken);
-        if (!checkResult.success) {
+
+    this._unsubscribe = navigation.addListener('focus', async () => {
+      // do something
+      const token = await storage.load({key: 'token'});
+      this.setState({
+        token: token,
+      });
+    });
+    storage
+      .load({key: 'token'})
+      .then(async (token) => {
+        if (token) {
+          const checkResult = await checkToken(token.accessToken);
+          console.log(checkResult);
+          console.log('tokne', token);
+          if (!checkResult.success) {
+            this.props.navigation.push('Login', {nextRoute: 'HealthCode'});
+          } else {
+            this.setState({
+              token: token.accessToken,
+            });
+          }
+          // .then((res) => {
+          //   if (res.success) {
+          //     refresh(token.refreshToken).then((res) => {
+          //       if (res.success) {
+          //         storage.save({
+          //           key: 'token',
+          //           data: res.data,
+          //         });
+          //         this.props.navigation.push('WebView', {
+          //           token: res.data.accessToken,
+          //         });
+          //       } else {
+          //         this.props.navigation.push('Login');
+          //       }
+          //     });
+          //   } else {
+          //     this.props.navigation.push('Login');
+          //   }
+          // });
+        } else {
           this.props.navigation.push('Login', {nextRoute: 'HealthCode'});
         }
-        // .then((res) => {
-        //   if (res.success) {
-        //     refresh(token.refreshToken).then((res) => {
-        //       if (res.success) {
-        //         storage.save({
-        //           key: 'token',
-        //           data: res.data,
-        //         });
-        //         this.props.navigation.push('WebView', {
-        //           token: res.data.accessToken,
-        //         });
-        //       } else {
-        //         this.props.navigation.push('Login');
-        //       }
-        //     });
-        //   } else {
-        //     this.props.navigation.push('Login');
-        //   }
-        // });
-      } else {
-        this.props.navigation.push('Login', {nextRoute: 'HealthCode'});
-      }
-    } catch (e) {
-      navigation.push('Login', {nextRoute: 'HealthCode'});
-    }
+      })
+      .catch((e) => {
+        navigation.push('Login', {nextRoute: 'HealthCode'});
+      });
+  }
+  componentWillUnmount() {
+    this._unsubscribe();
   }
   render() {
+    const {navigation, route} = this.props;
+    // const {token = ''} = route.params;
+    // console.log('路由参数', route.params);
+    const {token} = this.state;
+    console.log('重新渲染', token);
+
     return (
       <WebView
         ref={(instance) => {
           // this.webView = instance;
         }}
         source={{
-          uri: 'https://health.hangzhou.gov.cn/citybrain/health-code/#/?token=',
+          uri:
+            'https://health.hangzhou.gov.cn/citybrain/health-code/#/?token=' +
+            token,
           // token,
         }}
         startInLoadingState={true}

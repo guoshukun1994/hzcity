@@ -8,6 +8,7 @@ import {
   Text,
   Image,
   ScrollView,
+  Button,
 } from 'react-native';
 import 'react-native-gesture-handler';
 import storage from '../store/index';
@@ -15,6 +16,27 @@ import {Tip} from 'beeshell';
 import {getCode, verifyCode} from '../api/api';
 // 方式一： API 调用
 export default class Login extends React.Component {
+  static navigationOptions = (props) => {
+    const {navigation} = props;
+    return {
+      title: '手机号登录',
+      headerStyle: {
+        backgroundColor: '#fff',
+      },
+      headerLeft: () => (
+        <Button
+          onPress={() => {
+            console.log('navigation', p);
+
+            // p.navigation.jumpTo('Home');
+          }}
+          title="Info"
+          color="#fff"
+        />
+      ),
+      headerTitleAlign: 'center',
+    };
+  };
   constructor(p) {
     super(p);
     this.state = {
@@ -55,6 +77,7 @@ export default class Login extends React.Component {
     const {phoneNo, code, count} = this.state;
     return (
       <ScrollView
+        keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
           flex: 1,
           alignItems: 'center',
@@ -91,10 +114,13 @@ export default class Login extends React.Component {
             onPress={() => {
               if (count == '获取验证码') {
                 if (/^1[3-9][0-9]{9}$/.test(phoneNo)) {
-                  this.getcount();
                   getCode({phoneNo: phoneNo})
                     .then((res) => {
+                      console.log(res);
+
                       if (res.success) {
+                        this.getcount();
+
                         Tip.show('验证码发送成功', 1000, 'center');
                       } else {
                         Tip.show('验证码发送失败', 1000, 'center');
@@ -116,6 +142,10 @@ export default class Login extends React.Component {
         <TouchableOpacity
           style={styles.loginBtn}
           onPress={() => {
+            // console.log(navigation.navigate('HealthCode'));
+            // navigation.navigate('NavFootTab', {
+            //   token: res.data.tokenDTO.accessToken,
+            // });
             if (!phoneNo) {
               Tip.show('请输入手机号', 1000, 'center');
             } else if (!code) {
@@ -127,7 +157,7 @@ export default class Login extends React.Component {
                     key: 'token',
                     data: res.data.tokenDTO,
                   });
-                  navigation.navigate('NavFootTab', {
+                  navigation.navigate('HealthCode', {
                     token: res.data.tokenDTO.accessToken,
                   });
                 } else {
