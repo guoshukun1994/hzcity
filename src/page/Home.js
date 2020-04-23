@@ -15,7 +15,7 @@ import {Card} from 'react-native-shadow-cards';
 import storage from '../store/index';
 import {Tip} from 'beeshell';
 import Swiper from 'react-native-swiper';
-import {getNewsList} from '../api/api';
+import {getNewsList, checkToken} from '../api/api';
 // 方式一： API 调用
 export default class Home extends React.Component {
   constructor(p) {
@@ -43,6 +43,7 @@ export default class Home extends React.Component {
             flexDirection: 'row',
           }}
           onPress={() => {
+            //作为一个栈路由存在的
             navigation.push('WebView', {url: item.url});
           }}>
           <View
@@ -88,7 +89,7 @@ export default class Home extends React.Component {
             showsButtons={false}
             loop={false}
             paginationStyle={
-              {bottom: 50}
+              {bottom: 70}
               // 主要分成三屏，三个View
             }>
             <View
@@ -135,7 +136,7 @@ export default class Home extends React.Component {
             flexDirection: 'row',
             marginHorizontal: 16,
             borderRadius: 10,
-            marginTop: -40,
+            marginTop: -60,
           }}>
           <Card
             style={{
@@ -150,6 +151,31 @@ export default class Home extends React.Component {
                 height: 94,
                 justifyContent: 'center',
                 alignItems: 'center',
+              }}
+              onPress={() => {
+                storage
+                  .load({key: 'token'})
+                  .then(async (token) => {
+                    if (token) {
+                      const checkResult = await checkToken(token.accessToken);
+                      console.log(checkResult);
+                      console.log('tokne', token);
+                      if (!checkResult.success) {
+                        navigation.push('Login', {
+                          nextRoute: 'HealthCode',
+                        });
+                      } else {
+                        navigation.navigate('HealthCode');
+                      }
+                    } else {
+                      navigation.push('Login', {
+                        nextRoute: 'HealthCode',
+                      });
+                    }
+                  })
+                  .catch((e) => {
+                    navigation.push('Login', {nextRoute: 'HealthCode'});
+                  });
               }}>
               <Image
                 style={{height: 50, width: 50}}
@@ -161,6 +187,33 @@ export default class Home extends React.Component {
                 height: 94,
                 justifyContent: 'center',
                 alignItems: 'center',
+              }}
+              onPress={() => {
+                storage
+                  .load({key: 'token'})
+                  .then(async (token) => {
+                    if (token) {
+                      const checkResult = await checkToken(token.accessToken);
+                      console.log(',,,,,,,,,', checkResult);
+
+                      if (!checkResult.success) {
+                        navigation.push('Login', {
+                          nextRoute: 'People',
+                        });
+                      } else {
+                        navigation.navigate('People');
+                      }
+                    } else {
+                      navigation.push('Login', {
+                        nextRoute: 'People',
+                      });
+                    }
+                  })
+                  .catch((e) => {
+                    console.log(e, 'eee');
+
+                    navigation.push('Login', {nextRoute: 'People'});
+                  });
               }}>
               <Image
                 style={{height: 50, width: 50}}

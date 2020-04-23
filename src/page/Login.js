@@ -16,27 +16,27 @@ import {Tip} from 'beeshell';
 import {getCode, verifyCode} from '../api/api';
 // 方式一： API 调用
 export default class Login extends React.Component {
-  static navigationOptions = (props) => {
-    const {navigation} = props;
-    return {
-      title: '手机号登录',
-      headerStyle: {
-        backgroundColor: '#fff',
-      },
-      headerLeft: () => (
-        <Button
-          onPress={() => {
-            console.log('navigation', p);
+  // static navigationOptions = (props) => {
+  //   const {navigation} = props;
+  //   return {
+  //     title: '手机号登录',
+  //     headerStyle: {
+  //       backgroundColor: '#fff',
+  //     },
+  //     headerLeft: () => (
+  //       <Button
+  //         onPress={() => {
+  //           console.log('navigation', p);
 
-            // p.navigation.jumpTo('Home');
-          }}
-          title="Info"
-          color="#fff"
-        />
-      ),
-      headerTitleAlign: 'center',
-    };
-  };
+  //           // p.navigation.jumpTo('Home');
+  //         }}
+  //         title="Info"
+  //         color="#fff"
+  //       />
+  //     ),
+  //     headerTitleAlign: 'center',
+  //   };
+  // };
   constructor(p) {
     super(p);
     this.state = {
@@ -142,10 +142,6 @@ export default class Login extends React.Component {
         <TouchableOpacity
           style={styles.loginBtn}
           onPress={() => {
-            // console.log(navigation.navigate('HealthCode'));
-            // navigation.navigate('NavFootTab', {
-            //   token: res.data.tokenDTO.accessToken,
-            // });
             if (!phoneNo) {
               Tip.show('请输入手机号', 1000, 'center');
             } else if (!code) {
@@ -157,7 +153,7 @@ export default class Login extends React.Component {
                     key: 'token',
                     data: res.data.tokenDTO,
                   });
-                  navigation.navigate('HealthCode', {
+                  navigation.navigate(nextRoute, {
                     token: res.data.tokenDTO.accessToken,
                   });
                 } else {

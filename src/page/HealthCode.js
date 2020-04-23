@@ -47,25 +47,6 @@ export default class HealthCode extends React.Component {
               token: token.accessToken,
             });
           }
-          // .then((res) => {
-          //   if (res.success) {
-          //     refresh(token.refreshToken).then((res) => {
-          //       if (res.success) {
-          //         storage.save({
-          //           key: 'token',
-          //           data: res.data,
-          //         });
-          //         this.props.navigation.push('WebView', {
-          //           token: res.data.accessToken,
-          //         });
-          //       } else {
-          //         this.props.navigation.push('Login');
-          //       }
-          //     });
-          //   } else {
-          //     this.props.navigation.push('Login');
-          //   }
-          // });
         } else {
           this.props.navigation.push('Login', {nextRoute: 'HealthCode'});
         }

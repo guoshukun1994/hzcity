@@ -98,8 +98,6 @@ export default class App extends React.Component {
 
                   // console.log('route', route);
                   if (route.name === 'HealthCode' || route.name === 'People') {
-                    console.log('进到这里');
-
                     storage
                       .load({key: 'token'})
                       .then(async (token) => {
