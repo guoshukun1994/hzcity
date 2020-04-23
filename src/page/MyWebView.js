@@ -10,47 +10,46 @@ import {
 } from 'react-native';
 import 'react-native-gesture-handler';
 import {WebView} from 'react-native-webview';
-export default function MyWebView({route, navigation}) {
-  // const _onMessage = (event) => {
-  //   const {data} = event.nativeEvent;
+import storage from '../store/index';
 
-  //   console.log('传处理useragent', data);
-  // };
-  const {token} = route.params;
-  console.log('新的token', token);
+export default class MyWebView extends React.Component {
+  render() {
+    const {route} = this.props;
+    const {url} = route.params;
+    console.log(route);
 
-  return (
-    <WebView
-      ref={(instance) => {
-        // this.webView = instance;
-      }}
-      source={{
-        uri:
-          'https://health.hangzhou.gov.cn/citybrain/health-code/#/?token=' +
-          token,
-      }}
-      startInLoadingState={true}
-      // onMessage={_onMessage}
-      renderLoading={() => (
-        <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            justifyContent: 'center',
-          }}>
-          <Text
+    return (
+      <WebView
+        ref={(instance) => {
+          // this.webView = instance;
+        }}
+        source={{
+          uri: url,
+          // token,
+        }}
+        startInLoadingState={true}
+        // onMessage={_onMessage}
+        renderLoading={() => (
+          <View
             style={{
-              textAlign: 'center',
-              marginTop: 10,
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              justifyContent: 'center',
             }}>
-            加载中...
-          </Text>
-        </View>
-      )}
-      style={{flex: 1}}
-    />
-  );
+            <Text
+              style={{
+                textAlign: 'center',
+                marginTop: 10,
+              }}>
+              加载中...
+            </Text>
+          </View>
+        )}
+        style={{flex: 1}}
+      />
+    );
+  }
 }

@@ -50,3 +50,11 @@ export const refresh = (token) => {
     // data,
   });
 };
+
+export const getNewsList = () => {
+  return Axios({
+    url: 'https://minapp-test.hzcitybrain.com/phoneapi/getNewsList',
+    method: 'get',
+    // data,
+  });
+};
