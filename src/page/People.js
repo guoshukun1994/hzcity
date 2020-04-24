@@ -14,7 +14,7 @@ import storage from '../store/index';
 import {Tip} from 'beeshell';
 import SplashScreen from 'react-native-splash-screen';
 import {WebView} from 'react-native-webview';
-import {checkToken} from '@/api/api';
+import {checkToken} from '../api/api';
 // 方式一： API 调用
 export default class People extends React.Component {
   constructor(p) {

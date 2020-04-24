@@ -32,24 +32,25 @@ export default class GuideScreen extends Component {
             if (token) {
               checkToken(token.tokenDTO.userToken).then((res) => {
                 if (res.success) {
-                  refresh(token.refreshToken).then((res) => {
-                    console.log(token.refreshToken);
-                    if (res.success) {
-                      storage.save({
-                        key: 'token',
-                        data: res.data,
-                      });
-                      this.props.navigation.replace('NavFootTab');
-                      SplashScreen.hide();
-                      // this.props.navigation.replace('WebView', {
-                      //   token: res.data.userToken,
-                      // });
-                      // SplashScreen.hide();
-                    } else {
-                      this.props.navigation.replace('NavFootTab');
-                      SplashScreen.hide();
-                    }
-                  });
+                  this.props.navigation.replace('NavFootTab');
+                  SplashScreen.hide();
+                  // refresh(token.refreshToken).then((res) => {
+                  //   if (res.success) {
+                  //     storage.save({
+                  //       key: 'token',
+                  //       data: res.data,
+                  //     });
+                  //     this.props.navigation.replace('NavFootTab');
+                  //     SplashScreen.hide();
+                  //     // this.props.navigation.replace('WebView', {
+                  //     //   token: res.data.userToken,
+                  //     // });
+                  //     // SplashScreen.hide();
+                  //   } else {
+                  //     this.props.navigation.replace('NavFootTab');
+                  //     SplashScreen.hide();
+                  //   }
+                  // });
                 } else {
                   this.props.navigation.replace('NavFootTab');
                   SplashScreen.hide();

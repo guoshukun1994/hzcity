@@ -99,10 +99,18 @@ export default class Home extends React.Component {
                 justifyContent: 'space-between',
                 alignItems: 'center',
               }}>
-              <Image
+              <ImageBackground
                 style={{height: 276, width: '100%'}}
-                source={require('@/assets/banner1.png')}
-              />
+                source={require('../assets/banner1.png')}>
+                <Image
+                  style={{
+                    width: 124,
+                    height: 32,
+                    marginTop: 30,
+                    marginLeft: 14,
+                  }}
+                  source={require('../assets/bannertitle.png')}></Image>
+              </ImageBackground>
             </View>
             <View
               style={{
@@ -111,10 +119,18 @@ export default class Home extends React.Component {
                 justifyContent: 'space-between',
                 alignItems: 'center',
               }}>
-              <Image
+              <ImageBackground
                 style={{height: 276, width: '100%'}}
-                source={require('../assets/banner2.png')}
-              />
+                source={require('../assets/banner2.png')}>
+                <Image
+                  style={{
+                    width: 124,
+                    height: 32,
+                    marginTop: 30,
+                    marginLeft: 14,
+                  }}
+                  source={require('../assets/bannertitle.png')}></Image>
+              </ImageBackground>
             </View>
             <View
               style={{
@@ -123,10 +139,14 @@ export default class Home extends React.Component {
                 justifyContent: 'space-between',
                 alignItems: 'center',
               }}>
-              <Image
-                style={{height: 276, width: '100%'}}
-                source={require('../assets/banner3.png')}
-              />
+              <ImageBackground
+                style={{
+                  width: 124,
+                  height: 32,
+                  marginTop: 30,
+                  marginLeft: 14,
+                }}
+                source={require('../assets/banner3.png')}></ImageBackground>
             </View>
           </Swiper>
         </View>
@@ -179,7 +199,7 @@ export default class Home extends React.Component {
               }}>
               <Image
                 style={{height: 50, width: 50}}
-                source={require('@/assets/healthIcon.png')}></Image>
+                source={require('../assets/healthIcon.png')}></Image>
               <Text style={{fontSize: 12}}>健康码</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -215,7 +235,7 @@ export default class Home extends React.Component {
               }}>
               <Image
                 style={{height: 50, width: 50}}
-                source={require('@/assets/peopleIcon.png')}></Image>
+                source={require('../assets/peopleIcon.png')}></Image>
               <Text style={{fontSize: 12}}>民生直通车</Text>
             </TouchableOpacity>
           </Card>
@@ -224,7 +244,7 @@ export default class Home extends React.Component {
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Image
               style={{width: 16, height: 20, marginRight: 5}}
-              source={require('@/assets/hot.png')}></Image>
+              source={require('../assets/hot.png')}></Image>
             <Text style={{color: '#333333', fontSize: 16}}>热点动态</Text>
           </View>
           {this._renderNewsList()}

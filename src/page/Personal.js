@@ -15,7 +15,7 @@ import storage from '../store/index';
 import {Tip, Dialog} from 'beeshell';
 
 // 方式一： API 调用
-import {checkToken, getUserInfo} from '@/api/api';
+import {checkToken, getUserInfo} from '../api/api';
 export default class Personal extends React.Component {
   constructor(p) {
     super(p);
@@ -82,7 +82,7 @@ export default class Personal extends React.Component {
               borderRadius: 50,
               marginTop: 70,
             }}
-            source={require('@/assets/avatar.png')}></Image>
+            source={require('../assets/avatar.png')}></Image>
 
           {isLogin ? (
             <Text style={{marginTop: 18, color: '#FEFEFE', fontSize: 18}}>
@@ -119,7 +119,7 @@ export default class Personal extends React.Component {
           }}>
           <Image
             style={{height: 20, width: 18, marginHorizontal: 15}}
-            source={require('@/assets/info.png')}></Image>
+            source={require('../assets/info.png')}></Image>
           <Text style={{color: '#333333', flex: 1, fontSize: 14}}>
             个人信息
           </Text>
@@ -139,12 +139,12 @@ export default class Personal extends React.Component {
           }}>
           <Image
             style={{height: 20, width: 18, marginHorizontal: 15}}
-            source={require('@/assets/about.png')}></Image>
+            source={require('../assets/about.png')}></Image>
           <Text style={{color: '#1c1c1c', flex: 1, fontSize: 14}}>
             关于杭州城市大脑
           </Text>
           <Image
-            source={require('@/assets/right.png')}
+            source={require('../assets/right.png')}
             style={{width: 8, height: 12, marginRight: 13}}></Image>
         </TouchableOpacity>
         {isLogin ? (

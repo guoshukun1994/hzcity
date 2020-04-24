@@ -16,7 +16,7 @@ import {
   About,
 } from './src/index';
 import storage from './src/store/index';
-import {checkToken} from '@/api/api';
+import {checkToken} from './src/api/api';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -38,13 +38,13 @@ export default class App extends React.Component {
                   return (
                     <Image
                       style={styles.tabBarIcon}
-                      source={require('@/assets/homefocus.png')}></Image>
+                      source={require('./src/assets/homefocus.png')}></Image>
                   );
                 } else {
                   return (
                     <Image
                       style={styles.tabBarIcon}
-                      source={require('@/assets/homeblur.png')}></Image>
+                      source={require('./src/assets/homeblur.png')}></Image>
                   );
                 }
               } else if (route.name === 'HealthCode') {
@@ -52,13 +52,13 @@ export default class App extends React.Component {
                   return (
                     <Image
                       style={styles.tabBarIcon}
-                      source={require('@/assets/healthfocus.png')}></Image>
+                      source={require('./src/assets/healthfocus.png')}></Image>
                   );
                 } else {
                   return (
                     <Image
                       style={styles.tabBarIcon}
-                      source={require('@/assets/healthblur.png')}></Image>
+                      source={require('./src/assets/healthblur.png')}></Image>
                   );
                 }
               } else if (route.name === 'People') {
@@ -66,13 +66,13 @@ export default class App extends React.Component {
                   return (
                     <Image
                       style={styles.tabBarIcon}
-                      source={require('@/assets/peoplefocus.png')}></Image>
+                      source={require('./src/assets/peoplefocus.png')}></Image>
                   );
                 } else {
                   return (
                     <Image
                       style={styles.tabBarIcon}
-                      source={require('@/assets/peopleblur.png')}></Image>
+                      source={require('./src/assets/peopleblur.png')}></Image>
                   );
                 }
               } else {
@@ -80,13 +80,13 @@ export default class App extends React.Component {
                   return (
                     <Image
                       style={styles.tabBarIcon}
-                      source={require('@/assets/personalfocus.png')}></Image>
+                      source={require('./src/assets/personalfocus.png')}></Image>
                   );
                 } else {
                   return (
                     <Image
                       style={styles.tabBarIcon}
-                      source={require('@/assets/personalblur.png')}></Image>
+                      source={require('./src/assets/personalblur.png')}></Image>
                   );
                 }
               }
