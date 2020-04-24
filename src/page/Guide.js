@@ -21,6 +21,8 @@ export default class GuideScreen extends Component {
   }
   componentDidMount() {
     // SplashScreen.hide();
+
+    //openFlag 是判断之前引导图是否
     storage
       .load({key: 'openFlag'})
       .then((openFlag) => {
@@ -28,7 +30,7 @@ export default class GuideScreen extends Component {
           .load({key: 'token'})
           .then((token) => {
             if (token) {
-              checkToken(token.accessToken).then((res) => {
+              checkToken(token.tokenDTO.userToken).then((res) => {
                 if (res.success) {
                   refresh(token.refreshToken).then((res) => {
                     console.log(token.refreshToken);
@@ -40,7 +42,7 @@ export default class GuideScreen extends Component {
                       this.props.navigation.replace('NavFootTab');
                       SplashScreen.hide();
                       // this.props.navigation.replace('WebView', {
-                      //   token: res.data.accessToken,
+                      //   token: res.data.userToken,
                       // });
                       // SplashScreen.hide();
                     } else {

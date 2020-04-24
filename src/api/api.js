@@ -19,6 +19,7 @@ export const verifyCode = (data) => {
     method: 'post',
     headers: {
       'content-type': 'application/json',
+      'user-token': '',
     },
     data,
   });
@@ -32,7 +33,7 @@ export const checkToken = (token) => {
     method: 'post',
     headers: {
       'content-type': 'application/json',
-      'health2-token': token,
+      'user-token': token,
     },
     // data,
   });
@@ -45,7 +46,7 @@ export const refresh = (token) => {
     method: 'post',
     headers: {
       'content-type': 'application/json',
-      'health2-token': token,
+      'user-token': token,
     },
     // data,
   });
@@ -56,5 +57,17 @@ export const getNewsList = () => {
     url: 'https://minapp-test.hzcitybrain.com/phoneapi/getNewsList',
     method: 'get',
     // data,
+  });
+};
+export const getUserInfo = (token, data) => {
+  return Axios({
+    url:
+      'https://health.hangzhou.gov.cn/health2/user/api/v1/oauth2/getUserInfo',
+    method: 'post',
+    headers: {
+      'content-type': 'application/json',
+      'user-token': token,
+    },
+    data,
   });
 };

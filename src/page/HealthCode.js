@@ -21,30 +21,34 @@ export default class HealthCode extends React.Component {
     super(p);
     this.state = {
       token: '',
+      code: '',
+      userid: '',
     };
   }
   componentDidMount() {
     const {navigation} = this.props;
 
-    this._unsubscribe = navigation.addListener('focus', async () => {
-      // do something
-      const token = await storage.load({key: 'token'});
-      this.setState({
-        token: token,
-      });
-    });
+    // this._unsubscribe = navigation.addListener('focus', async () => {
+    //   // do something
+    //   const token = await storage.load({key: 'token'});
+    //   this.setState({
+    //     token: token,
+    //   });
+    // });
     storage
       .load({key: 'token'})
       .then(async (token) => {
         if (token) {
-          const checkResult = await checkToken(token.accessToken);
+          const checkResult = await checkToken(token.tokenDTO.userToken);
           console.log(checkResult);
           console.log('tokne', token);
           if (!checkResult.success) {
             this.props.navigation.push('Login', {nextRoute: 'HealthCode'});
           } else {
             this.setState({
-              token: token.accessToken,
+              token: token.tokenDTO.userToken,
+              code: token.tokenDTO.code,
+              userid: token.id,
             });
           }
         } else {
@@ -60,11 +64,8 @@ export default class HealthCode extends React.Component {
   }
   render() {
     const {navigation, route} = this.props;
-    // const {token = ''} = route.params;
-    // console.log('路由参数', route.params);
-    const {token} = this.state;
+    const {token, code, userid} = this.state;
     console.log('重新渲染', token);
-
     return (
       <WebView
         ref={(instance) => {
@@ -73,7 +74,11 @@ export default class HealthCode extends React.Component {
         source={{
           uri:
             'https://health.hangzhou.gov.cn/citybrain/health-code/#/?token=' +
-            token,
+            token +
+            '&code=' +
+            code +
+            '&userid=' +
+            userid,
           // token,
         }}
         startInLoadingState={true}

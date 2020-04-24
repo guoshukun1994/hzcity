@@ -87,6 +87,9 @@ export default class Login extends React.Component {
         <View style={{...styles.loginInput, marginTop: 20}}>
           <Image source={require('../assets/phone.png')} />
           <TextInput
+            ref={(c) => {
+              this.phoneNo = c;
+            }}
             style={{flex: 1, padding: 0, fontSize: 16, marginLeft: 15}}
             onChangeText={(text) => {
               this.setState({
@@ -100,6 +103,9 @@ export default class Login extends React.Component {
         <View style={{...styles.loginInput, marginTop: 20}}>
           <Image source={require('../assets/code.png')} />
           <TextInput
+            ref={(c) => {
+              this.code = c;
+            }}
             style={{flex: 1, padding: 0, fontSize: 16, marginLeft: 15}}
             onChangeText={(text) => {
               this.setState({
@@ -117,10 +123,10 @@ export default class Login extends React.Component {
                   getCode({phoneNo: phoneNo})
                     .then((res) => {
                       console.log(res);
-
                       if (res.success) {
                         this.getcount();
-
+                        this.phoneNo.blur();
+                        this.code.focus();
                         Tip.show('验证码发送成功', 1000, 'center');
                       } else {
                         Tip.show('验证码发送失败', 1000, 'center');
@@ -147,19 +153,23 @@ export default class Login extends React.Component {
             } else if (!code) {
               Tip.show('请输入验证码', 1000, 'center');
             } else {
-              verifyCode({phoneNo, code}).then((res) => {
-                if (res.data) {
-                  storage.save({
-                    key: 'token',
-                    data: res.data.tokenDTO,
-                  });
-                  navigation.navigate(nextRoute, {
-                    token: res.data.tokenDTO.accessToken,
-                  });
-                } else {
-                  Tip.show(res.message, 1000, 'center');
-                }
-              });
+              verifyCode({phoneNo, code})
+                .then((res) => {
+                  if (res.data) {
+                    storage.save({
+                      key: 'token',
+                      data: res.data,
+                    });
+                    navigation.navigate(nextRoute, {
+                      token: res.data.tokenDTO.userToken,
+                    });
+                  } else {
+                    Tip.show(res.message, 1000, 'center');
+                  }
+                })
+                .catch((e) => {
+                  Tip.show('暂时无法获取', 1000, 'center');
+                });
             }
           }}>
           <Text style={{color: '#fff', fontSize: 18}}>登录</Text>

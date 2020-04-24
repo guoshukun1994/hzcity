@@ -37,14 +37,16 @@ export default class People extends React.Component {
       .load({key: 'token'})
       .then(async (token) => {
         if (token) {
-          const checkResult = await checkToken(token.accessToken);
+          const checkResult = await checkToken(token.tokenDTO.userToken);
           console.log(checkResult);
           console.log('tokne', token);
           if (!checkResult.success) {
             this.props.navigation.push('Login', {nextRoute: 'HealthCode'});
           } else {
             this.setState({
-              token: token.accessToken,
+              token: token.tokenDTO.userToken,
+              code: token.tokenDTO.code,
+              userid: token.id,
             });
           }
         } else {
@@ -62,16 +64,20 @@ export default class People extends React.Component {
     const {navigation, route} = this.props;
     // const {token = ''} = route.params;
     // console.log('路由参数', route.params);
-    const {token} = this.state;
-    console.log('重新渲染', token);
-
+    const {token, code, userid} = this.state;
     return (
       <WebView
         ref={(instance) => {
           // this.webView = instance;
         }}
         source={{
-          uri: 'http://211.149.250.134:8080/#/?token=' + token,
+          uri:
+            'http://211.149.250.134:8080/#/?token=' +
+            token +
+            '&code=' +
+            code +
+            '&userid=' +
+            userid,
           // token,
         }}
         startInLoadingState={true}

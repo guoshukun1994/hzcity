@@ -157,9 +157,9 @@ export default class Home extends React.Component {
                   .load({key: 'token'})
                   .then(async (token) => {
                     if (token) {
-                      const checkResult = await checkToken(token.accessToken);
-                      console.log(checkResult);
-                      console.log('tokne', token);
+                      const checkResult = await checkToken(
+                        token.tokenDTO.userToken,
+                      );
                       if (!checkResult.success) {
                         navigation.push('Login', {
                           nextRoute: 'HealthCode',
@@ -193,9 +193,9 @@ export default class Home extends React.Component {
                   .load({key: 'token'})
                   .then(async (token) => {
                     if (token) {
-                      const checkResult = await checkToken(token.accessToken);
-                      console.log(',,,,,,,,,', checkResult);
-
+                      const checkResult = await checkToken(
+                        token.tokenDTO.userToken,
+                      );
                       if (!checkResult.success) {
                         navigation.push('Login', {
                           nextRoute: 'People',
@@ -210,21 +210,18 @@ export default class Home extends React.Component {
                     }
                   })
                   .catch((e) => {
-                    console.log(e, 'eee');
-
                     navigation.push('Login', {nextRoute: 'People'});
                   });
               }}>
               <Image
                 style={{height: 50, width: 50}}
                 source={require('@/assets/peopleIcon.png')}></Image>
-              <Text style={{fontSize: 12}}>民意直通车</Text>
+              <Text style={{fontSize: 12}}>民生直通车</Text>
             </TouchableOpacity>
           </Card>
         </View>
-        <ScrollView style={{paddingHorizontal: 16, flex: 1}}>
-          <View
-            style={{marginTop: 20, flexDirection: 'row', alignItems: 'center'}}>
+        <ScrollView style={{paddingHorizontal: 16, flex: 1, marginTop: 20}}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Image
               style={{width: 16, height: 20, marginRight: 5}}
               source={require('@/assets/hot.png')}></Image>

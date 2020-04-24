@@ -13,6 +13,7 @@ import {
   Home,
   Personal,
   People,
+  About,
 } from './src/index';
 import storage from './src/store/index';
 import {checkToken} from '@/api/api';
@@ -90,23 +91,22 @@ export default class App extends React.Component {
                 }
               }
             },
-            tabBarButton: (props) => (
-              <TouchableOpacity
-                {...props}
-                onPress={async () => {
-                  console.log('nava', navigation);
-
-                  // console.log('route', route);
-                  if (route.name === 'HealthCode' || route.name === 'People') {
-                    storage
-                      .load({key: 'token'})
-                      .then(async (token) => {
+            tabBarButton: (props) => {
+              return (
+                <TouchableOpacity
+                  {...props}
+                  onPress={async () => {
+                    console.log('route', route);
+                    if (
+                      route.name === 'HealthCode' ||
+                      route.name === 'People'
+                    ) {
+                      try {
+                        const token = await storage.load({key: 'token'});
                         if (token) {
                           const checkResult = await checkToken(
-                            token.accessToken,
+                            token.tokenDTO.userToken,
                           );
-                          console.log(checkResult);
-                          console.log('tokne', token);
                           if (!checkResult.success) {
                             navigation.push('Login', {
                               nextRoute: route.name,
@@ -119,16 +119,49 @@ export default class App extends React.Component {
                             nextRoute: route.name,
                           });
                         }
-                      })
-                      .catch((e) => {
+                      } catch (e) {
                         navigation.push('Login', {nextRoute: route.name});
-                      });
-                  } else {
-                    navigation.navigate(route.name);
-                  }
-                }}
-              />
-            ),
+                      }
+                    } else {
+                      navigation.jumpTo(route.name);
+                    }
+                  }}
+                />
+              );
+            },
+            // (
+            // <TouchableOpacity
+            //   {...props}
+            //   onPress={async () => {
+            //     console.log('route', route);
+            //     if (route.name === 'HealthCode' || route.name === 'People') {
+            //       try {
+            //         const token = await storage.load({key: 'token'});
+            //         if (token) {
+            //           const checkResult = await checkToken(token.userToken);
+            //           console.log(checkResult);
+            //           console.log('tokne', token);
+            //           if (!checkResult.success) {
+            //             navigation.push('Login', {
+            //               nextRoute: route.name,
+            //             });
+            //           } else {
+            //             navigation.navigate(route.name);
+            //           }
+            //         } else {
+            //           navigation.push('Login', {
+            //             nextRoute: route.name,
+            //           });
+            //         }
+            //       } catch (e) {
+            //         navigation.push('Login', {nextRoute: route.name});
+            //       }
+            //     } else {
+            //       navigation.jumpTo(route.name);
+            //     }
+            //   }}
+            // />
+            // ),
           })}
           tabBarOptions={{
             activeTintColor: '#000',
@@ -145,7 +178,7 @@ export default class App extends React.Component {
           <Tab.Screen
             name="People"
             component={People}
-            options={{title: '民意直通车'}}
+            options={{title: '民生直通车'}}
           />
           <Tab.Screen
             name="Personal"
@@ -189,6 +222,17 @@ export default class App extends React.Component {
             component={MyWebView}
             options={{
               title: '热点新闻',
+              headerStyle: {
+                backgroundColor: '#fff',
+              },
+              headerTitleAlign: 'center',
+            }}
+          />
+          <Stack.Screen
+            name="About"
+            component={About}
+            options={{
+              title: '关于',
               headerStyle: {
                 backgroundColor: '#fff',
               },
