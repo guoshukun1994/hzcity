@@ -72,7 +72,6 @@ export default class Personal extends React.Component {
       <View style={{flex: 1}}>
         <ImageBackground
           source={require('../assets/person-back.png')}
-          //   resizeMode="contain"
           style={{height: 200, alignItems: 'center'}}>
           <Image
             style={{

@@ -72,7 +72,7 @@ export default class People extends React.Component {
         }}
         source={{
           uri:
-            'http://211.149.250.134:8080/#/?token=' +
+            'https://health.hangzhou.gov.cn/msztc/#/?token=' +
             token +
             '&code=' +
             code +

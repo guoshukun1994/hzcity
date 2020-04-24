@@ -59,6 +59,14 @@ export const getNewsList = () => {
     // data,
   });
 };
+export const getNewsImageById = () => {
+  return Axios({
+    url: 'https://minapp-test.hzcitybrain.com/phoneapi/getNewsImageById',
+    method: 'get',
+    // data,
+  });
+};
+
 export const getUserInfo = (token, data) => {
   return Axios({
     url:

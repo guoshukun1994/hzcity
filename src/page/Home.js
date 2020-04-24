@@ -15,7 +15,7 @@ import {Card} from 'react-native-shadow-cards';
 import storage from '../store/index';
 import {Tip} from 'beeshell';
 import Swiper from 'react-native-swiper';
-import {getNewsList, checkToken} from '../api/api';
+import {getNewsList, checkToken, getNewsImageById} from '../api/api';
 // 方式一： API 调用
 export default class Home extends React.Component {
   constructor(p) {
@@ -26,8 +26,13 @@ export default class Home extends React.Component {
   }
   componentDidMount() {
     getNewsList().then((res) => {
+      console.log('新闻，res', res.data);
+
       this.setState({
         newsList: res.data,
+      });
+      getNewsImageById().then((imgList) => {
+        console.log('imgList', imgList);
       });
     });
   }
@@ -140,13 +145,17 @@ export default class Home extends React.Component {
                 alignItems: 'center',
               }}>
               <ImageBackground
-                style={{
-                  width: 124,
-                  height: 32,
-                  marginTop: 30,
-                  marginLeft: 14,
-                }}
-                source={require('../assets/banner3.png')}></ImageBackground>
+                style={{height: 276, width: '100%'}}
+                source={require('../assets/banner3.png')}>
+                <Image
+                  style={{
+                    width: 124,
+                    height: 32,
+                    marginTop: 30,
+                    marginLeft: 14,
+                  }}
+                  source={require('../assets/bannertitle.png')}></Image>
+              </ImageBackground>
             </View>
           </Swiper>
         </View>
