@@ -27,13 +27,23 @@ export default class Home extends React.Component {
   componentDidMount() {
     getNewsList().then((res) => {
       console.log('新闻，res', res.data);
-
+      for (let i = 0; i < res.data.length; i++) {
+        if (res.data[i].imgUrl == null) {
+          res.data[i].imgUrl = '';
+        }
+      }
       this.setState({
         newsList: res.data,
       });
-      getNewsImageById().then((imgList) => {
-        console.log('imgList', imgList);
-      });
+      for (let i = 0; i < res.data.length; i++) {
+        getNewsImageById(res.data[i].id).then((img) => {
+          let newsList = JSON.parse(JSON.stringify(this.state.newsList));
+          newsList[i].imgUrl = img.data;
+          this.setState({
+            newsList: newsList,
+          });
+        });
+      }
     });
   }
   _renderNewsList = () => {
