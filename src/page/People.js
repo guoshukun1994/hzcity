@@ -28,42 +28,33 @@ export default class People extends React.Component {
 
     this._unsubscribe = navigation.addListener('focus', async () => {
       // do something
-      const token = await storage.load({key: 'token'});
-      this.setState({
-        token: token,
-      });
-    });
-    storage
-      .load({key: 'token'})
-      .then(async (token) => {
-        if (token) {
-          const checkResult = await checkToken(token.tokenDTO.userToken);
-          console.log(checkResult);
-          console.log('tokne', token);
-          if (!checkResult.success) {
-            this.props.navigation.push('Login', {nextRoute: 'HealthCode'});
+      storage
+        .load({key: 'token'})
+        .then(async (token) => {
+          if (token) {
+            const checkResult = await checkToken(token.tokenDTO.userToken);
+            if (!checkResult.success) {
+              this.props.navigation.push('Login', {nextRoute: 'People'});
+            } else {
+              this.setState({
+                token: token.tokenDTO.userToken,
+                code: token.tokenDTO.code,
+                userid: token.id,
+              });
+            }
           } else {
-            this.setState({
-              token: token.tokenDTO.userToken,
-              code: token.tokenDTO.code,
-              userid: token.id,
-            });
+            this.props.navigation.push('Login', {nextRoute: 'People'});
           }
-        } else {
-          this.props.navigation.push('Login', {nextRoute: 'HealthCode'});
-        }
-      })
-      .catch((e) => {
-        navigation.push('Login', {nextRoute: 'HealthCode'});
-      });
+        })
+        .catch((e) => {
+          navigation.push('Login', {nextRoute: 'People'});
+        });
+    });
   }
   componentWillUnmount() {
     this._unsubscribe();
   }
   render() {
-    const {navigation, route} = this.props;
-    // const {token = ''} = route.params;
-    // console.log('路由参数', route.params);
     const {token, code, userid} = this.state;
     return (
       <WebView
@@ -78,10 +69,8 @@ export default class People extends React.Component {
             code +
             '&userid=' +
             userid,
-          // token,
         }}
         startInLoadingState={true}
-        // onMessage={_onMessage}
         renderLoading={() => (
           <View
             style={{

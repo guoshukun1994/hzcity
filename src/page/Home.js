@@ -1,7 +1,6 @@
 import 'react-native-get-random-values';
 import React from 'react';
 import {
-  TextInput,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -13,7 +12,6 @@ import {
 import 'react-native-gesture-handler';
 import {Card} from 'react-native-shadow-cards';
 import storage from '../store/index';
-import {Tip} from 'beeshell';
 import Swiper from 'react-native-swiper';
 import {getNewsList, checkToken, getNewsImageById} from '../api/api';
 // 方式一： API 调用
@@ -26,24 +24,9 @@ export default class Home extends React.Component {
   }
   componentDidMount() {
     getNewsList().then((res) => {
-      console.log('新闻，res', res.data);
-      for (let i = 0; i < res.data.length; i++) {
-        if (res.data[i].imgUrl == null) {
-          res.data[i].imgUrl = '';
-        }
-      }
       this.setState({
         newsList: res.data,
       });
-      for (let i = 0; i < res.data.length; i++) {
-        getNewsImageById(res.data[i].id).then((img) => {
-          let newsList = JSON.parse(JSON.stringify(this.state.newsList));
-          newsList[i].imgUrl = img.data;
-          this.setState({
-            newsList: newsList,
-          });
-        });
-      }
     });
   }
   _renderNewsList = () => {
@@ -84,7 +67,9 @@ export default class Home extends React.Component {
           </View>
           <Image
             source={{
-              uri: item.imgUrl,
+              uri:
+                'https://minapp-test.hzcitybrain.com//phoneapi/getNewsImage?nid=' +
+                item.id,
             }}
             style={{height: 82, width: 82}}></Image>
         </TouchableOpacity>

@@ -32,6 +32,7 @@ export default class App extends React.Component {
       return (
         <Tab.Navigator
           screenOptions={({route, navigation}) => ({
+            // 底部导航图标配置
             tabBarIcon: ({focused, color, size}) => {
               if (route.name === 'Home') {
                 if (focused) {
@@ -91,12 +92,12 @@ export default class App extends React.Component {
                 }
               }
             },
+            // 底部导航，点击事件按键拦截，覆盖原生点击事件
             tabBarButton: (props) => {
               return (
                 <TouchableOpacity
                   {...props}
                   onPress={async () => {
-                    console.log('route', route);
                     if (
                       route.name === 'HealthCode' ||
                       route.name === 'People'
@@ -129,39 +130,6 @@ export default class App extends React.Component {
                 />
               );
             },
-            // (
-            // <TouchableOpacity
-            //   {...props}
-            //   onPress={async () => {
-            //     console.log('route', route);
-            //     if (route.name === 'HealthCode' || route.name === 'People') {
-            //       try {
-            //         const token = await storage.load({key: 'token'});
-            //         if (token) {
-            //           const checkResult = await checkToken(token.userToken);
-            //           console.log(checkResult);
-            //           console.log('tokne', token);
-            //           if (!checkResult.success) {
-            //             navigation.push('Login', {
-            //               nextRoute: route.name,
-            //             });
-            //           } else {
-            //             navigation.navigate(route.name);
-            //           }
-            //         } else {
-            //           navigation.push('Login', {
-            //             nextRoute: route.name,
-            //           });
-            //         }
-            //       } catch (e) {
-            //         navigation.push('Login', {nextRoute: route.name});
-            //       }
-            //     } else {
-            //       navigation.jumpTo(route.name);
-            //     }
-            //   }}
-            // />
-            // ),
           })}
           tabBarOptions={{
             activeTintColor: '#000',

@@ -1,7 +1,6 @@
 import 'react-native-get-random-values';
 import React from 'react';
 import {
-  TextInput,
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
@@ -50,21 +49,6 @@ export default class Personal extends React.Component {
   componentWillUnmount() {
     this._unsubscribe();
   }
-  // componentWillMount() {
-  //   storage
-  //     .load({key: 'token'})
-  //     .then(async (token) => {
-  //       if (token) {
-  //         const checkResult = await checkToken(token.userToken);
-  //         if (checkResult.success) {
-  //           this.setState({
-  //             isLogin: true,
-  //           });
-  //         }
-  //       }
-  //     })
-  //     .catch((e) => {});
-  // }
   render() {
     const {navigation} = this.props;
     const {isLogin, userInfo} = this.state;
@@ -146,6 +130,7 @@ export default class Personal extends React.Component {
             source={require('../assets/right.png')}
             style={{width: 8, height: 12, marginRight: 13}}></Image>
         </TouchableOpacity>
+
         {isLogin ? (
           <TouchableOpacity
             style={{
@@ -155,19 +140,33 @@ export default class Personal extends React.Component {
               paddingVertical: 10,
             }}
             onPress={() => {
-              storage.save({
-                key: 'token',
-                data: '',
-              });
-              this.setState({
-                userInfo: {},
-                isLogin: false,
-              });
-              Tip.show('退出成功', 1000, 'center');
+              this.dialog.open();
             }}>
             <Text style={{textAlign: 'center', color: 'blue'}}>退出登录</Text>
           </TouchableOpacity>
         ) : null}
+        <Dialog
+          ref={(c) => {
+            this.dialog = c;
+          }}
+          title=""
+          titleStyle={{height: 0}}
+          bodyText="确定退出杭州城市大脑"
+          cancelable={true}
+          cancelLabelText="取消"
+          confirmLabelText="确定"
+          confirmCallback={() => {
+            storage.save({
+              key: 'token',
+              data: '',
+            });
+            this.setState({
+              userInfo: {},
+              isLogin: false,
+            });
+            Tip.show('退出成功', 1000, 'center');
+          }}
+        />
       </View>
     );
   }

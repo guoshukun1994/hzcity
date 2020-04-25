@@ -20,51 +20,12 @@ export default class GuideScreen extends Component {
     };
   }
   componentDidMount() {
-    // SplashScreen.hide();
-
     //openFlag 是判断之前引导图是否
     storage
       .load({key: 'openFlag'})
       .then((openFlag) => {
-        storage
-          .load({key: 'token'})
-          .then((token) => {
-            if (token) {
-              checkToken(token.tokenDTO.userToken).then((res) => {
-                if (res.success) {
-                  this.props.navigation.replace('NavFootTab');
-                  SplashScreen.hide();
-                  // refresh(token.refreshToken).then((res) => {
-                  //   if (res.success) {
-                  //     storage.save({
-                  //       key: 'token',
-                  //       data: res.data,
-                  //     });
-                  //     this.props.navigation.replace('NavFootTab');
-                  //     SplashScreen.hide();
-                  //     // this.props.navigation.replace('WebView', {
-                  //     //   token: res.data.userToken,
-                  //     // });
-                  //     // SplashScreen.hide();
-                  //   } else {
-                  //     this.props.navigation.replace('NavFootTab');
-                  //     SplashScreen.hide();
-                  //   }
-                  // });
-                } else {
-                  this.props.navigation.replace('NavFootTab');
-                  SplashScreen.hide();
-                }
-              });
-            } else {
-              this.props.navigation.replace('NavFootTab');
-              SplashScreen.hide();
-            }
-          })
-          .catch((e) => {
-            this.props.navigation.replace('NavFootTab');
-            SplashScreen.hide();
-          });
+        this.props.navigation.replace('NavFootTab');
+        SplashScreen.hide();
       })
       .catch((e) => {
         SplashScreen.hide();

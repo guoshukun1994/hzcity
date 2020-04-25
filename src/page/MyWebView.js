@@ -16,8 +16,6 @@ export default class MyWebView extends React.Component {
   render() {
     const {route} = this.props;
     const {url} = route.params;
-    console.log(route);
-
     return (
       <WebView
         ref={(instance) => {

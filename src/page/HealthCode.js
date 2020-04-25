@@ -28,44 +28,36 @@ export default class HealthCode extends React.Component {
   componentDidMount() {
     const {navigation} = this.props;
 
-    // this._unsubscribe = navigation.addListener('focus', async () => {
-    //   // do something
-    //   const token = await storage.load({key: 'token'});
-    //   this.setState({
-    //     token: token,
-    //   });
-    // });
-    storage
-      .load({key: 'token'})
-      .then(async (token) => {
-        if (token) {
-          const checkResult = await checkToken(token.tokenDTO.userToken);
-          console.log(checkResult);
-          console.log('tokne', token);
-          if (!checkResult.success) {
-            this.props.navigation.push('Login', {nextRoute: 'HealthCode'});
+    this._unsubscribe = navigation.addListener('focus', async () => {
+      // do something
+      storage
+        .load({key: 'token'})
+        .then(async (token) => {
+          if (token) {
+            const checkResult = await checkToken(token.tokenDTO.userToken);
+            if (!checkResult.success) {
+              this.props.navigation.push('Login', {nextRoute: 'HealthCode'});
+            } else {
+              this.setState({
+                token: token.tokenDTO.userToken,
+                code: token.tokenDTO.code,
+                userid: token.id,
+              });
+            }
           } else {
-            this.setState({
-              token: token.tokenDTO.userToken,
-              code: token.tokenDTO.code,
-              userid: token.id,
-            });
+            this.props.navigation.push('Login', {nextRoute: 'HealthCode'});
           }
-        } else {
-          this.props.navigation.push('Login', {nextRoute: 'HealthCode'});
-        }
-      })
-      .catch((e) => {
-        navigation.push('Login', {nextRoute: 'HealthCode'});
-      });
+        })
+        .catch((e) => {
+          navigation.push('Login', {nextRoute: 'HealthCode'});
+        });
+    });
   }
   componentWillUnmount() {
     this._unsubscribe();
   }
   render() {
-    const {navigation, route} = this.props;
     const {token, code, userid} = this.state;
-    console.log('重新渲染', token);
     return (
       <WebView
         ref={(instance) => {

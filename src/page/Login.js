@@ -26,9 +26,6 @@ export default class Login extends React.Component {
   //     headerLeft: () => (
   //       <Button
   //         onPress={() => {
-  //           console.log('navigation', p);
-
-  //           // p.navigation.jumpTo('Home');
   //         }}
   //         title="Info"
   //         color="#fff"
@@ -122,7 +119,6 @@ export default class Login extends React.Component {
                 if (/^1[3-9][0-9]{9}$/.test(phoneNo)) {
                   getCode({phoneNo: phoneNo})
                     .then((res) => {
-                      console.log(res);
                       if (res.success) {
                         this.getcount();
                         this.phoneNo.blur();

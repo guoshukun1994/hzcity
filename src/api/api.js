@@ -25,7 +25,7 @@ export const verifyCode = (data) => {
   });
 };
 
-//验证token有效
+//验证token是否有效
 export const checkToken = (token) => {
   return Axios({
     url:
@@ -39,6 +39,7 @@ export const checkToken = (token) => {
   });
 };
 
+//更新token  暂时没用到
 export const refresh = (token) => {
   return Axios({
     url:
@@ -51,7 +52,7 @@ export const refresh = (token) => {
     // data,
   });
 };
-
+//获取新闻列表
 export const getNewsList = () => {
   return Axios({
     url: 'https://minapp-test.hzcitybrain.com/phoneapi/getNewsList',
@@ -59,6 +60,8 @@ export const getNewsList = () => {
     // data,
   });
 };
+
+//根据新闻Id，获取新闻图片
 export const getNewsImageById = (nid) => {
   return Axios({
     url:
@@ -69,6 +72,7 @@ export const getNewsImageById = (nid) => {
   });
 };
 
+//获取用户信息
 export const getUserInfo = (token, data) => {
   return Axios({
     url:
