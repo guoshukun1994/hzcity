@@ -110,7 +110,7 @@ export default class Personal extends React.Component {
             {userInfo.telephone}
           </Text>
         </View>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{
             flexDirection: 'row',
             height: 50,
@@ -132,7 +132,7 @@ export default class Personal extends React.Component {
           <Image
             source={require('../assets/right.png')}
             style={{width: 8, height: 12, marginRight: 13}}></Image>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           style={{
             flexDirection: 'row',
