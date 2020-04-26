@@ -155,6 +155,7 @@ export default class Login extends React.Component {
                     });
                   } else {
                     Tip.show(res.message, 1000, 'center');
+                    Tip.show('登录失败，未获取到此用户的信息', 1000, 'center');
                   }
                 })
                 .catch((e) => {
@@ -162,13 +163,13 @@ export default class Login extends React.Component {
                 });
             }
           }}>
-          <Text style={{color: '#fff', fontSize: 18}}>个人登录</Text>
+          <Text style={{color: '#fff', fontSize: 18}}>登录</Text>
         </TouchableOpacity>
         <Text style={{color: '#407ada', fontSize: 16, marginTop: 24}}
               onPress={()=> {
-                navigation.push('WebView',{title:'企业登录',url:"https://qinqing.hangzhou.gov.cn/qqent/com/m/"})
+                navigation.push('WebView',{title:'企业登录',url:"https://qinqing.hangzhou.gov.cn/qqent/"})
               }}
-              >企业登录</Text>
+              >切换企业账号登录</Text>
       </ScrollView>
     );
   }

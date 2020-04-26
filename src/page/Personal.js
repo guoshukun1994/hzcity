@@ -73,17 +73,16 @@ export default class Personal extends React.Component {
             </Text>
           ) : (
             <View style={{flexDirection: "row"}}>
-
-                <Text style={{textAlign: 'center', color: '#fff', fontSize: 13,marginTop: 15,}}
+                <Text style={{textAlign: 'center', color: '#fff', fontSize: 13,marginTop: 24,}}
                       onPress={()=> {
                          navigation.push('Login',{nextRoute:'Personal'})
                       }}>
                   个人登录
                 </Text>
-                <Text style={{extAlign: 'center', color: '#fff', fontSize: 13,marginTop: 14}}>/</Text>
-                <Text style={{textAlign: 'center', color: '#fff', fontSize: 13,marginTop: 15}}
+                <Text style={{extAlign: 'center', color: '#fff', fontSize: 13,marginTop: 22}}>/</Text>
+                <Text style={{textAlign: 'center', color: '#fff', fontSize: 13,marginTop: 24}}
                       onPress={()=> {
-                        navigation.push('WebView',{title:'企业登录',url:"https://qinqing.hangzhou.gov.cn/qqent/com/m/"})
+                        navigation.push('WebView',{title:'企业登录',url:"https://qinqing.hangzhou.gov.cn/qqent/"})
                       }}>
                   企业登录
                 </Text>
