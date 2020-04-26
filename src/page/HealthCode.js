@@ -74,6 +74,7 @@ export default class HealthCode extends React.Component {
           // token,
         }}
         startInLoadingState={true}
+        mixedContentMode={'always'}
         // onMessage={_onMessage}
         renderLoading={() => (
           <View

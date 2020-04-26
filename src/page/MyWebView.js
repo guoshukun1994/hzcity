@@ -13,7 +13,6 @@ import {WebView} from 'react-native-webview';
 import storage from '../store/index';
 
 export default class MyWebView extends React.Component {
-
   static navigationOptions = (props) => {
     const {navigation, route} = props;
     return {
@@ -41,6 +40,7 @@ export default class MyWebView extends React.Component {
           // token,
         }}
         startInLoadingState={true}
+        mixedContentMode={'always'}
         // onMessage={_onMessage}
         renderLoading={() => (
           <View

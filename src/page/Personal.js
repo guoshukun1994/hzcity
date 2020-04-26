@@ -108,6 +108,29 @@ export default class Personal extends React.Component {
             {userInfo.telephone}
           </Text>
         </View>
+        {/* <TouchableOpacity
+          style={{
+            flexDirection: 'row',
+            height: 50,
+            alignItems: 'center',
+            backgroundColor: '#fff',
+          }}
+          onPress={() => {
+            navigation.push('WebView', {
+              title: '隐私政策',
+              url: 'http://www.todosoft.com.cn/td/userprivacy.html',
+            });
+          }}>
+          <Image
+            style={{height: 20, width: 18, marginHorizontal: 15}}
+            source={require('../assets/about.png')}></Image>
+          <Text style={{color: '#1c1c1c', flex: 1, fontSize: 14}}>
+            隐私政策
+          </Text>
+          <Image
+            source={require('../assets/right.png')}
+            style={{width: 8, height: 12, marginRight: 13}}></Image>
+        </TouchableOpacity> */}
         <TouchableOpacity
           style={{
             flexDirection: 'row',

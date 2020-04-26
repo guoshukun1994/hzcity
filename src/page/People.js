@@ -71,6 +71,7 @@ export default class People extends React.Component {
             userid,
         }}
         startInLoadingState={true}
+        mixedContentMode={'always'}
         renderLoading={() => (
           <View
             style={{

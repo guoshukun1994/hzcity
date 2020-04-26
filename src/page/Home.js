@@ -69,7 +69,7 @@ export default class Home extends React.Component {
           <Image
             source={{
               uri:
-                'https://minapp-test.hzcitybrain.com//phoneapi/getNewsImage?nid=' +
+                'https://minapp-test.hzcitybrain.com/phoneapi/getNewsImage?nid=' +
                 item.id,
             }}
             style={{height: 82, width: 82}}></Image>
