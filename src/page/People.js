@@ -72,6 +72,7 @@ export default class People extends React.Component {
         }}
         startInLoadingState={true}
         mixedContentMode={'always'}
+        geolocationEnabled={true}
         renderLoading={() => (
           <View
             style={{
