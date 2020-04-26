@@ -13,11 +13,26 @@ import {WebView} from 'react-native-webview';
 import storage from '../store/index';
 
 export default class MyWebView extends React.Component {
+
+  static navigationOptions = (props) => {
+    const {navigation, route} = props;
+    return {
+      title: route.params.title,
+      headerStyle: {
+        backgroundColor: '#fff',
+        // backgroundColor: 'red'
+      },
+      // headerTitleAlign: 'center',
+      headerBackTitle: ' ',
+    };
+  };
+
   render() {
     const {route} = this.props;
     const {url} = route.params;
     return (
       <WebView
+        // style={{marginTop}}
         ref={(instance) => {
           // this.webView = instance;
         }}

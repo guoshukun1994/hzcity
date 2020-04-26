@@ -42,7 +42,8 @@ export default class Home extends React.Component {
           }}
           onPress={() => {
             //作为一个栈路由存在的
-            navigation.push('WebView', {url: item.url});
+            // navigation.push('WebView', {url: item.url});
+            navigation.push('WebView', {title: '热点新闻', url: item.url});
           }}>
           <View
             style={{flex: 1, justifyContent: 'space-between', marginRight: 30}}>

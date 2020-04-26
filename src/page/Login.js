@@ -16,24 +16,18 @@ import {Tip} from 'beeshell';
 import {getCode, verifyCode} from '../api/api';
 // 方式一： API 调用
 export default class Login extends React.Component {
-  // static navigationOptions = (props) => {
-  //   const {navigation} = props;
-  //   return {
-  //     title: '手机号登录',
-  //     headerStyle: {
-  //       backgroundColor: '#fff',
-  //     },
-  //     headerLeft: () => (
-  //       <Button
-  //         onPress={() => {
-  //         }}
-  //         title="Info"
-  //         color="#fff"
-  //       />
-  //     ),
-  //     headerTitleAlign: 'center',
-  //   };
-  // };
+  static navigationOptions = (props) => {
+    const {navigation, route} = props;
+    return {
+      title: 'login',
+      headerStyle: {
+        backgroundColor: '#fff',
+        // backgroundColor: 'red'
+      },
+      // headerTitleAlign: 'center',
+      headerBackTitle: ' ',
+    };
+  };
   constructor(p) {
     super(p);
     this.state = {
@@ -168,8 +162,13 @@ export default class Login extends React.Component {
                 });
             }
           }}>
-          <Text style={{color: '#fff', fontSize: 18}}>登录</Text>
+          <Text style={{color: '#fff', fontSize: 18}}>个人登录</Text>
         </TouchableOpacity>
+        <Text style={{color: '#407ada', fontSize: 16, marginTop: 24}}
+              onPress={()=> {
+                navigation.push('WebView',{title:'企业登录',url:"https://qinqing.hangzhou.gov.cn/qqent/com/m/"})
+              }}
+              >企业登录</Text>
       </ScrollView>
     );
   }

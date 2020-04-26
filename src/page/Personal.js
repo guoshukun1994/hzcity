@@ -72,24 +72,22 @@ export default class Personal extends React.Component {
               欢迎你 {userInfo.userName}
             </Text>
           ) : (
-            <TouchableOpacity
-              style={{
-                width: 75,
-                height: 27,
-                marginTop: 15,
-                borderColor: '#fff',
-                borderWidth: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 20,
-              }}
-              onPress={() => {
-                navigation.push('Login', {nextRoute: 'Personal'});
-              }}>
-              <Text style={{textAlign: 'center', color: '#fff', fontSize: 13}}>
-                登录
-              </Text>
-            </TouchableOpacity>
+            <View style={{flexDirection: "row"}}>
+
+                <Text style={{textAlign: 'center', color: '#fff', fontSize: 13,marginTop: 15,}}
+                      onPress={()=> {
+                         navigation.push('Login',{nextRoute:'Personal'})
+                      }}>
+                  个人登录
+                </Text>
+                <Text style={{extAlign: 'center', color: '#fff', fontSize: 13,marginTop: 14}}>/</Text>
+                <Text style={{textAlign: 'center', color: '#fff', fontSize: 13,marginTop: 15}}
+                      onPress={()=> {
+                        navigation.push('WebView',{title:'企业登录',url:"https://qinqing.hangzhou.gov.cn/qqent/com/m/"})
+                      }}>
+                  企业登录
+                </Text>
+            </View>
           )}
         </ImageBackground>
         <View
@@ -118,7 +116,10 @@ export default class Personal extends React.Component {
             backgroundColor: '#fff',
           }}
           onPress={() => {
-            navigation.push('About');
+            navigation.push('WebView', {
+              title: '关于',
+              url: 'https://health.hangzhou.gov.cn/msztc/#/appsynopsis',
+            });
           }}>
           <Image
             style={{height: 20, width: 18, marginHorizontal: 15}}

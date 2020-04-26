@@ -1,6 +1,6 @@
 import 'react-native-get-random-values';
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Button, Image, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, Button, Image, View, Platform} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -157,6 +157,7 @@ export default class App extends React.Component {
       );
     };
     return (
+      <View style={{marginTop: 20, flex:1}}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Guide">
           <Stack.Screen
@@ -180,21 +181,33 @@ export default class App extends React.Component {
             options={{
               title: '登录',
               headerStyle: {
-                backgroundColor: '#fff',
+                backgroundColor: '#FFF',
               },
-              headerTitleAlign: 'center',
+              headerBackTitle: ' '
             }}
+            // options={{
+            //   title: 'login',
+            //   headerStyle: {
+            //     // backgroundColor: '#fff',
+            //     backgroundColor: 'red'
+            //   },
+            //   // headerTitleAlign: 'center',
+            //   headerBackTitle: ' ',
+            // }}
           />
           <Stack.Screen
             name="WebView"
             component={MyWebView}
-            options={{
-              title: '热点新闻',
-              headerStyle: {
-                backgroundColor: '#fff',
-              },
-              headerTitleAlign: 'center',
-            }}
+            options={
+              MyWebView.navigationOptions
+            }
+            // options={{
+            //   title: '热点新闻',
+            //   headerStyle: {
+            //     backgroundColor: '#fff',
+            //   },
+            //   headerTitleAlign: 'center',
+            // }}
           />
           <Stack.Screen
             name="About"
@@ -205,10 +218,12 @@ export default class App extends React.Component {
                 backgroundColor: '#fff',
               },
               headerTitleAlign: 'center',
+              // headerBackTitle: ' '
             }}
           />
         </Stack.Navigator>
       </NavigationContainer>
+      </View>
     );
   }
 }

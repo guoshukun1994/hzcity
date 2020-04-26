@@ -54,7 +54,7 @@ export default class GuideScreen extends Component {
             style={{height: 276, width: 288, marginTop: 80}}
             source={require('../assets/guideImg1.png')}
           />
-          <Image source={require('../assets/guideText1.png')} />
+          <Image style={{width:300, height:70}} source={require('../assets/guideText1.png')} />
           <Image
             style={{height: 27.5, width: 124, marginBottom: 30}}
             source={require('../assets/logo.png')}
@@ -71,7 +71,7 @@ export default class GuideScreen extends Component {
             style={{height: 276, width: 288, marginTop: 80}}
             source={require('../assets/guideImg2.png')}
           />
-          <Image source={require('../assets/guideText2.png')} />
+          <Image style={{width:221, height:22}} source={require('../assets/guideText2.png')} />
           <Image
             style={{height: 27.5, width: 124, marginBottom: 30}}
             source={require('../assets/logo.png')}
@@ -97,7 +97,7 @@ export default class GuideScreen extends Component {
               });
               this.props.navigation.replace('NavFootTab');
             }}>
-            <Image source={require('../assets/guideText3.png')} />
+            <Image style={{width:182, height:44}} source={require('../assets/guideText3.png')} />
           </TouchableOpacity>
 
           <Image
