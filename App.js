@@ -188,13 +188,15 @@ export default class App extends React.Component {
           <Stack.Screen
             name="WebView"
             component={MyWebView}
-            options={{
-              title: '热点新闻',
-              headerStyle: {
-                backgroundColor: '#fff',
-              },
-              headerTitleAlign: 'center',
-            }}
+            options={MyWebView.navigationOptions}
+
+            // options={{
+            //   title: '热点新闻',
+            //   headerStyle: {
+            //     backgroundColor: '#fff',
+            //   },
+            //   headerTitleAlign: 'center',
+            // }}
           />
           <Stack.Screen
             name="About"
