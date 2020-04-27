@@ -170,6 +170,11 @@ export default class Login extends React.Component {
           }}>
           <Text style={{color: '#fff', fontSize: 18}}>登录</Text>
         </TouchableOpacity>
+        {/* <Text style={{color: '#407ada', fontSize: 17, marginTop: 40}}
+              onPress={()=> {
+                navigation.push('WebView',{title:'企业登录',url:"https://qinqing.hangzhou.gov.cn/qqent/"})
+              }}
+              >切换企业账号登录</Text> */}
       </ScrollView>
     );
   }

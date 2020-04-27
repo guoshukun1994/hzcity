@@ -7,7 +7,10 @@ import {
   View,
   Text,
   Image,
+  TextInput,
   ScrollView,
+  Modal,
+  TouchableHighlight
 } from 'react-native';
 import 'react-native-gesture-handler';
 import storage from '../store/index';
@@ -20,9 +23,10 @@ export default class Personal extends React.Component {
     super(p);
     this.state = {
       isLogin: false,
-      userInfo: {id: '', userName: '', idCard: '', telephone: '', tokenDTO: ''},
+      userInfo: {id: '', userName: '', idCard: '', telephone: '', tokenDTO: ''}
     };
   }
+
   componentDidMount() {
     const {navigation} = this.props;
     this._unsubscribe = navigation.addListener('focus', async () => {
@@ -72,7 +76,36 @@ export default class Personal extends React.Component {
               欢迎你 {userInfo.userName}
             </Text>
           ) : (
+            <View style={{flexDirection: "row"}}>
+              {/* <TouchableOpacity style={{width:73, height:27, borderColor: '#fff'}}>
+                  <Text style={{textAlign: 'center', color: '#fff', fontSize: 13,marginTop: 24,}}
+                        onPress={()=> {
+                          navigation.push('Login',{nextRoute:'Personal'})
+                        }}>
+                    个人登录
+                  </Text>
+              </TouchableOpacity> */}
             <TouchableOpacity
+                style={{
+                  width: 75,
+                  height: 27,
+                  marginTop: 15,
+                  borderColor: '#fff',
+                  borderWidth: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderRadius: 20,
+                }}
+                onPress={() => {
+                  navigation.push('Login', {nextRoute: 'Personal'});
+                }}>
+                <Text style={{textAlign: 'center', color: '#fff', fontSize: 13}}>
+                  登录
+                </Text>
+            </TouchableOpacity>
+                
+                {/* <Text style={{extAlign: 'center', color: '#fff', fontSize: 13,marginTop: 22}}>/</Text> */}
+            {/* <TouchableOpacity
               style={{
                 width: 75,
                 height: 27,
@@ -82,14 +115,25 @@ export default class Personal extends React.Component {
                 justifyContent: 'center',
                 alignItems: 'center',
                 borderRadius: 20,
+                marginLeft: 15
               }}
-              onPress={() => {
-                navigation.push('Login', {nextRoute: 'Personal'});
+              onPress={()=> {
+                navigation.push('WebView',{title:'企业登录',url:"https://qinqing.hangzhou.gov.cn/qqent/"})
               }}>
               <Text style={{textAlign: 'center', color: '#fff', fontSize: 13}}>
-                登录
+              企业登录
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
+              {/* <TouchableOpacity style={{width:73, height:27, borderRadius:'30%'}}>
+                <Text style={{textAlign: 'center', color: '#fff', fontSize: 13,marginTop: 24}}
+                      onPress={()=> {
+                        navigation.push('WebView',{title:'企业登录',url:"https://qinqing.hangzhou.gov.cn/qqent/"})
+                      }}>
+                  企业登录
+                </Text>
+              </TouchableOpacity> */}
+                
+            </View>
           )}
         </ImageBackground>
         <View
@@ -110,7 +154,29 @@ export default class Personal extends React.Component {
             {userInfo.telephone}
           </Text>
         </View>
-        {/* <TouchableOpacity
+
+        <TouchableOpacity
+          style={{
+            flexDirection: 'row',
+            height: 50,
+            alignItems: 'center',
+            backgroundColor: '#fff',
+          }}
+          onPress={() => {
+            navigation.push('advise', {nextRoute: 'Personal'});
+          }}>
+          <Image
+            style={{height: 20, width: 18, marginHorizontal: 15}}
+            source={require('../assets/adviseIcon.png')}></Image>
+          <Text style={{color: '#1c1c1c', flex: 1, fontSize: 14,paddingLeft:-2}}>
+            建议反馈
+          </Text>
+          <Image
+            source={require('../assets/right.png')}
+            style={{width: 8, height: 12, marginRight: 13}}></Image>
+        </TouchableOpacity>
+
+        <TouchableOpacity
           style={{
             flexDirection: 'row',
             height: 50,
@@ -125,14 +191,15 @@ export default class Personal extends React.Component {
           }}>
           <Image
             style={{height: 20, width: 18, marginHorizontal: 15}}
-            source={require('../assets/about.png')}></Image>
+            source={require('../assets/secretIcon.png')}></Image>
           <Text style={{color: '#1c1c1c', flex: 1, fontSize: 14}}>
             隐私政策
           </Text>
           <Image
             source={require('../assets/right.png')}
             style={{width: 8, height: 12, marginRight: 13}}></Image>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
+
         <TouchableOpacity
           style={{
             flexDirection: 'row',

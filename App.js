@@ -14,6 +14,7 @@ import {
   Personal,
   People,
   About,
+  Advise
 } from './src/index';
 import storage from './src/store/index';
 import {checkToken} from './src/api/api';
@@ -197,6 +198,17 @@ export default class App extends React.Component {
             //   },
             //   headerTitleAlign: 'center',
             // }}
+          />
+          <Stack.Screen
+            name="advise"
+            component={Advise}
+            options={{
+              title: '建议反馈',
+              headerStyle: {
+                backgroundColor: '#fff',
+              },
+              headerTitleAlign: 'center',
+            }}
           />
           <Stack.Screen
             name="About"

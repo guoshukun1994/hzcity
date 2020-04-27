@@ -36,7 +36,7 @@ export default class GuideScreen extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        {/* <Dialog
+        <Dialog
           ref={(c) => {
             this._dialog = c;
           }}
@@ -96,7 +96,7 @@ export default class GuideScreen extends Component {
               this.props.navigation.replace('NavFootTab');
             });
           }}
-        /> */}
+        />
         <Swiper
           style={styles.wrapper}
           showsButtons={true}
@@ -165,9 +165,9 @@ export default class GuideScreen extends Component {
                   key: 'openFlag',
                   data: true,
                 });
-                this.props.navigation.replace('NavFootTab');
+                // this.props.navigation.replace('NavFootTab');
 
-                // this._dialog.open();
+                this._dialog.open();
               }}>
               <Image
                 style={{width: 182, height: 44}}

@@ -102,14 +102,14 @@ export default class Home extends React.Component {
               <ImageBackground
                 style={{height: 276, width: '100%'}}
                 source={require('../assets/banner1.png')}>
-                <Image
+                {/* <Image
                   style={{
                     width: 124,
                     height: 32,
                     marginTop: 30,
                     marginLeft: 14,
                   }}
-                  source={require('../assets/bannertitle.png')}></Image>
+                  source={require('../assets/bannertitle.png')}></Image> */}
               </ImageBackground>
             </View>
             <View
@@ -122,14 +122,14 @@ export default class Home extends React.Component {
               <ImageBackground
                 style={{height: 276, width: '100%'}}
                 source={require('../assets/banner2.png')}>
-                <Image
+                {/* <Image
                   style={{
                     width: 124,
                     height: 32,
                     marginTop: 30,
                     marginLeft: 14,
                   }}
-                  source={require('../assets/bannertitle.png')}></Image>
+                  source={require('../assets/bannertitle.png')}></Image> */}
               </ImageBackground>
             </View>
             <View
@@ -142,14 +142,14 @@ export default class Home extends React.Component {
               <ImageBackground
                 style={{height: 276, width: '100%'}}
                 source={require('../assets/banner3.png')}>
-                <Image
+                {/* <Image
                   style={{
                     width: 124,
                     height: 32,
                     marginTop: 30,
                     marginLeft: 14,
                   }}
-                  source={require('../assets/bannertitle.png')}></Image>
+                  source={require('../assets/bannertitle.png')}></Image> */}
               </ImageBackground>
             </View>
           </Swiper>
