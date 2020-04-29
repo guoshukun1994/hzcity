@@ -160,11 +160,11 @@ export default class GuideScreen extends Component {
             />
             <TouchableOpacity
               onPress={() => {
-                // 点击立即使用，保存启动图是否需要再次打开
-                storage.save({
-                  key: 'openFlag',
-                  data: true,
-                });
+                // 点击立即使用，弹出隐私协议
+                // storage.save({
+                //   key: 'openFlag',
+                //   data: true,
+                // });
                 // this.props.navigation.replace('NavFootTab');
 
                 this._dialog.open();
