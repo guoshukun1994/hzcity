@@ -14,6 +14,7 @@ import {Card} from 'react-native-shadow-cards';
 import storage from '../store/index';
 import Swiper from 'react-native-swiper';
 import {getNewsList, checkToken, getNewsImageById} from '../api/api';
+import {toDate} from '../utils/toDate'
 // 方式一： API 调用
 export default class Home extends React.Component {
   constructor(p) {
@@ -29,10 +30,32 @@ export default class Home extends React.Component {
       });
     });
   }
+
+  toDate = (time) =>{
+    // 需要的格式 yyyy-MM-dd hh:mm:ss
+    var date = new Date(time);
+    Y = date.getFullYear() + '-';
+    M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    D = date.getDate();
+    h = date.getHours();
+    m = date.getMinutes();
+    s = date.getSeconds();
+    D += '';
+    h += '';
+    m += '';
+    s += '';
+    D.length === 1 ? D = '0'+D : D;
+    h.length === 1 ? h = '0'+h : h;
+    m.length === 1 ? m = '0'+m : m;
+    s.length === 1 ? s = '0'+s : s;
+    return Y + M + D +' '+ h+':' + m + ':' + s   // 2019-06-10 11:45:39
+}
+
   _renderNewsList = () => {
     const {newsList} = this.state;
     const {navigation} = this.props;
     return newsList.map((item, index) => {
+      let time = this.toDate(item.Time);
       return (
         <TouchableOpacity
           key={index}
@@ -42,36 +65,40 @@ export default class Home extends React.Component {
           }}
           onPress={() => {
             //作为一个栈路由存在的
-            navigation.push('WebView', {title: '热点新闻', url: item.url});
+            // navigation.push('WebView', {title: '热点新闻', url: item.url});
+            navigation.push('WebView', {title: '热点新闻', url: item.Url});
           }}>
           <View
             style={{flex: 1, justifyContent: 'space-between', marginRight: 30}}>
             <Text
               ellipsizeMode="tail"
               numberOfLines={2}
-              style={{color: '#333333', fontSize: 15}}>
-              {item.title}
+              style={{color: '#333333', fontSize: 15,marginBottom: 20}}>
+              {/* {item.title} */}
+              {item.Title}
             </Text>
             <View
               style={{
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'space-between'
               }}>
-              <Text style={{color: '#999999', fontSize: 11}}>
-                {item.newsSource}
+              <Text style={{width: 90,height: 15,color: '#999999', fontSize: 11,marginRight: 20}}>
+                {/* {item.newsSource} */}
+                {item.GroupName}
               </Text>
-              <Text style={{color: '#999999', fontSize: 11}}>
-                {item.createTime}
+              <Text style={{color: '#999999', fontSize: 11,marginRight: 200,width: 120,height: 15}}>
+                {/* {item.createTime} */}
+                {time}
               </Text>
             </View>
           </View>
-          <Image
+          {/* <Image
             source={{
               uri:
                 'https://minapp-test.hzcitybrain.com/phoneapi/getNewsImage?nid=' +
                 item.id,
             }}
-            style={{height: 82, width: 82}}></Image>
+            style={{height: 82, width: 82}}></Image> */}
         </TouchableOpacity>
       );
     });
