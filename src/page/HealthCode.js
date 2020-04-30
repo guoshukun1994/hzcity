@@ -27,7 +27,7 @@ export default class HealthCode extends React.Component {
   }
   componentDidMount() {
     const {navigation} = this.props;
-
+    console.log('进入健康码componentDidMount')
     this._unsubscribe = navigation.addListener('focus', async () => {
       // do something
       storage
@@ -38,6 +38,10 @@ export default class HealthCode extends React.Component {
             if (!checkResult.success) {
               this.props.navigation.push('Login', {nextRoute: 'HealthCode'});
             } else {
+              console.log('componentDidMount注册的foucs监听')
+              // console.log('token=' + token.tokenDTO.userToken)
+              // console.log('code=' + token.tokenDTO.code)
+              // console.log('userid=' + token.id)
               this.setState({
                 token: token.tokenDTO.userToken,
                 code: token.tokenDTO.code,
@@ -55,9 +59,11 @@ export default class HealthCode extends React.Component {
   }
   componentWillUnmount() {
     this._unsubscribe();
+    console.log('进入健康码componentWillUnmount')
   }
   render() {
     const {token, code, userid} = this.state;
+    console.log('进入健康码render')
     return (
       <WebView
         ref={(instance) => {

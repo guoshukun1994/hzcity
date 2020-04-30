@@ -18,12 +18,14 @@ import {Tip, Dialog} from 'beeshell';
 
 // 方式一： API 调用
 import {checkToken, getUserInfo} from '../api/api';
+import { ceil } from 'react-native-reanimated';
 export default class Personal extends React.Component {
   constructor(p) {
     super(p);
     this.state = {
       isLogin: false,
-      userInfo: {id: '', userName: '', idCard: '', telephone: '', tokenDTO: ''}
+      userInfo: {id: '', userName: '', idCard: '', telephone: '', tokenDTO: ''},
+      isAuth: false
     };
   }
 
@@ -36,47 +38,89 @@ export default class Personal extends React.Component {
         userId: token.id,
       }).then((res) => {
         if (res.data) {
+          console.log(res.data)
+          let authSts = '未认证'
           if (res.data.telephone.length == 11) {
             res.data.telephone =
               res.data.telephone.substring(0, 3) +
               '****' +
               res.data.telephone.substring(7, 12);
           }
+          if(res.data.idCard != null){
+            console.log(res.data.idCard)
+            res.data.idCard = 
+            res.data.idCard.substring(0, 2) +
+              '**************' +
+            res.data.idCard.substring(14, 18);
+            this.setState({isAuth: true})
+            authSts = '已认证'
+            // this.setState({isAuth: false})
+          }
           this.setState({
-            userInfo: res.data,
+            userInfo: {...res.data, authSts },
             isLogin: true,
           });
         }
       });
     });
   }
-  componentWillUnmount() {
-    this._unsubscribe();
-  }
+  // componentWillUnmount() {
+  //   this._unsubscribe();
+  // }
   render() {
     const {navigation} = this.props;
-    const {isLogin, userInfo} = this.state;
+    const {isLogin,isAuth, userInfo} = this.state;
     return (
       <View style={{flex: 1}}>
         <ImageBackground
           source={require('../assets/person-back.png')}
           style={{height: 200, alignItems: 'center'}}>
-          <Image
+          {/* <Image
             style={{
               height: 65,
               width: 65,
               backgroundColor: 'gray',
               borderRadius: 50,
+              // marginTop: 42.5,
               marginTop: 70,
             }}
-            source={require('../assets/avatar.png')}></Image>
+            source={require('../assets/avatar.png')}></Image> */}
 
           {isLogin ? (
-            <Text style={{marginTop: 18, color: '#FEFEFE', fontSize: 18}}>
-              欢迎你 {userInfo.userName}
-            </Text>
+              <View style={{alignItems:"center"}}>
+                 <Image
+                  style={{
+                    height: 65,
+                    width: 65,
+                    backgroundColor: 'gray',
+                    borderRadius: 50,
+                    marginTop: 35,
+                    // marginTop: 70,
+                  }}
+                  source={require('../assets/avatar.png')}></Image>
+                <Text style={{marginTop: 18, color: '#FEFEFE', fontSize: 18}}>
+                  欢迎你 {userInfo.userName}
+                </Text>
+                { !isAuth ?
+                  <TouchableOpacity style={{width:75, height:27, borderColor: '#fff',marginTop: 10,backgroundColor: '#fff',borderRadius: 14.5}}
+                      onPress={()=> {
+                        navigation.push('authPage',{nextRoute:'Personal'});
+                      }}>
+                      <Text style={{textAlign: 'center', color: 'black', fontSize: 14,lineHeight: 29}}
+                            >
+                        未认证
+                      </Text>
+                  </TouchableOpacity>
+                :
+                  <View style={{width:75, height:27, borderColor: '#fff',marginTop: 10,backgroundColor: '#2776FA',borderRadius: 14.5}}>
+                      <Text style={{textAlign: 'center', color: '#fff', fontSize: 14,lineHeight: 29,}}>
+                        已认证
+                      </Text>
+                  </View>
+                }
+              </View>
           ) : (
-            <View style={{flexDirection: "row"}}>
+            <View style={{alignItems: "center"}}>
               {/* <TouchableOpacity style={{width:73, height:27, borderColor: '#fff'}}>
                   <Text style={{textAlign: 'center', color: '#fff', fontSize: 13,marginTop: 24,}}
                         onPress={()=> {
@@ -85,6 +129,16 @@ export default class Personal extends React.Component {
                     个人登录
                   </Text>
               </TouchableOpacity> */}
+            <Image
+              style={{
+                height: 65,
+                width: 65,
+                backgroundColor: 'gray',
+                borderRadius: 50,
+                // marginTop: 42.5,
+                marginTop: 70,
+              }}
+              source={require('../assets/avatar.png')}></Image>
             <TouchableOpacity
                 style={{
                   width: 75,
@@ -94,7 +148,7 @@ export default class Personal extends React.Component {
                   borderWidth: 1,
                   justifyContent: 'center',
                   alignItems: 'center',
-                  borderRadius: 20,
+                  borderRadius: 20
                 }}
                 onPress={() => {
                   navigation.push('Login', {nextRoute: 'Personal'});
@@ -132,28 +186,41 @@ export default class Personal extends React.Component {
                   企业登录
                 </Text>
               </TouchableOpacity> */}
-                
             </View>
           )}
         </ImageBackground>
-        <View
-          style={{
-            flexDirection: 'row',
-            height: 50,
-            alignItems: 'center',
-            marginTop: 10,
-            backgroundColor: '#fff',
-          }}>
-          <Image
-            style={{height: 20, width: 18, marginHorizontal: 15}}
-            source={require('../assets/info.png')}></Image>
-          <Text style={{color: '#333333', flex: 1, fontSize: 14}}>
-            个人信息
-          </Text>
-          <Text style={{color: '#333333', marginRight: 15}}>
-            {userInfo.telephone}
-          </Text>
-        </View>
+
+        <TouchableOpacity
+            style={{
+              flexDirection: 'row',
+              height: 50,
+              alignItems: 'center',
+              marginTop: 10,
+              backgroundColor: '#fff',
+            }}
+            onPress={()=>{
+              if(!isLogin){
+                Tip.show('请先登录！', 2000, 'center')
+              }else if(!isAuth){
+                Tip.show('请点击未认证进行实名认证！', 2000, 'center')
+              }else{
+                navigation.push('personalInfo', {nextRoute: 'Personal',userInfo});
+              }
+            }}
+            >
+            <Image
+              style={{height: 20, width: 18, marginHorizontal: 15}}
+              source={require('../assets/info.png')}></Image>
+            <Text style={{color: '#333333', flex: 1, fontSize: 14}}>
+              个人信息
+            </Text>
+            <Text style={{color: '#333333', marginRight: 15}}>
+              {userInfo.telephone}
+            </Text>
+            <Image
+              source={require('../assets/right.png')}
+              style={{width: 8, height: 12, marginRight: 13}}></Image>
+        </TouchableOpacity>
 
         <TouchableOpacity
           style={{
@@ -185,7 +252,7 @@ export default class Personal extends React.Component {
           }}
           onPress={() => {
             navigation.push('WebView', {
-              title: '隐私政策',
+              title: '用户协议与隐私政策',
               url: 'http://www.todosoft.com.cn/td/userprivacy.html',
             });
           }}>
@@ -193,7 +260,7 @@ export default class Personal extends React.Component {
             style={{height: 20, width: 18, marginHorizontal: 15}}
             source={require('../assets/secretIcon.png')}></Image>
           <Text style={{color: '#1c1c1c', flex: 1, fontSize: 14}}>
-            隐私政策
+            用户协议与隐私政策
           </Text>
           <Image
             source={require('../assets/right.png')}

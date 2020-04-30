@@ -14,7 +14,9 @@ import {
   Personal,
   People,
   About,
-  Advise
+  Advise,
+  PersonalInfo,
+  AuthPage
 } from './src/index';
 import storage from './src/store/index';
 import {checkToken} from './src/api/api';
@@ -206,6 +208,35 @@ export default class App extends React.Component {
               title: '建议反馈',
               headerStyle: {
                 backgroundColor: '#fff',
+              },
+              headerTitleAlign: 'center',
+            }}
+          />
+          <Stack.Screen
+            name="personalInfo"
+            component={PersonalInfo}
+            options={{
+              title: '个人信息',
+              headerStyle: {
+                backgroundColor: '#fff',
+              },
+              headerTitleStyle: {
+                color: '#333333'
+              },
+              headerTitleAlign: 'center',
+            }}
+          />
+          <Stack.Screen
+            name="authPage"
+            component={AuthPage}
+            options={{
+              title: '实名认证',
+              headerStyle: {
+                backgroundColor: '#377CFF',
+                borderBottomWidth: 0
+              },
+              headerTitleStyle:{
+                 color: '#fff'
               },
               headerTitleAlign: 'center',
             }}
