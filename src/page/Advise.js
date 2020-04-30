@@ -6,16 +6,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Tip } from 'beeshell';
 
 
-function UselessTextInput(props) {
-    return (
-      <TextInput
-        {...props} // 将父组件传递来的所有props传递给TextInput;比如下面的multiline和numberOfLines
-        editable
-        maxLength={200}
-      />
-    );
-  }
-
 export default class Advise extends React.Component {
   constructor(p) {
     super(p);
@@ -38,16 +28,18 @@ export default class Advise extends React.Component {
                   height: 261,
                   alignItems:'center',
                   top: 26,
-                  // paddingBottom: 210,
-                  // paddingVertical: 0,
                   padding: 0
                 }}
                 >
-                <UselessTextInput
+                <TextInput
+                    // style={{padding: 0,textAlignVertical: 'top'}}
                     placeholder="请填写您的问题描述以便我们提供更好的服务与帮助"
                     placeholderTextColor={{color: '#999999', fontSize: 14}}
                     multiline
-                    numberOfLines={10}
+                    editable
+                    maxLength={150}
+                    autoCapitalize='none'
+                    // numberOfLines={10}
                     onChangeText={(text,) => {
                         this.setState({
                             commitText: text

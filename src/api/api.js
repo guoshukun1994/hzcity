@@ -86,3 +86,17 @@ export const getUserInfo = (token, data) => {
     data,
   });
 };
+
+//实名认证接口
+export const realNmAuth = (token, data) => {
+  return Axios({
+    url:
+      'https://health.hangzhou.gov.cn/health2/user/api/v1/oauth2/authentication/realName',
+    method: 'post',
+    headers: {
+      'content-type': 'application/json',
+      'user-token': token,
+    },
+    data,
+  });
+};
