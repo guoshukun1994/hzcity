@@ -13,7 +13,7 @@ import {
 import 'react-native-gesture-handler';
 import storage from '../store/index';
 import {Tip} from 'beeshell';
-import {getCode, verifyCode} from '../api/api';
+import {getCode, verifyCode, getUserInfo} from '../api/api';
 // 方式一： API 调用
 export default class Login extends React.Component {
   // static navigationOptions = (props) => {
@@ -156,9 +156,38 @@ export default class Login extends React.Component {
                       key: 'token',
                       data: res.data,
                     });
-                    navigation.navigate(nextRoute, {
-                      token: res.data.tokenDTO.userToken,
-                    });
+                    console.log(res.data)
+
+                    //登录成功后获取用户信息，如果获取到的idCard不为null表示已认证，否则未认证跳转至认证页
+                    getUserInfo(res.data.tokenDTO.userToken, {
+                      code: res.data.tokenDTO.code,
+                      userId: res.data.id,
+                    }).then((userRes)=> {
+                      if(userRes.code === "200"){
+                        console.log('userRes=')
+                        console.log(userRes.data)
+
+                        //缓存用户信息
+                        storage.save({key:'userInfo',data: userRes.data})
+
+                        if(userRes.data.idCard != null){
+                          //已认证跳转至nextRoute
+                          navigation.navigate(nextRoute, {
+                            token: res.data.tokenDTO.userToken,
+                          });
+                        }else{
+                          //未认证跳转至认证页
+                          navigation.push('authPage',{nextRoute})
+                        }
+                      }else{
+                         console.log(userRes)
+                         Tip.show('获取用户信息失败',2000,'center')
+                      }
+                    }).catch((e)=>{
+                      console.log('getUserInfo的catch')
+                      console.log(e)
+                    })
+
                   } else {
                     Tip.show(res.message, 1000, 'center');
                   }
