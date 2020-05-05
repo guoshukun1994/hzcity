@@ -14,7 +14,7 @@ import {Card} from 'react-native-shadow-cards';
 import storage from '../store/index';
 import Swiper from 'react-native-swiper';
 import {getNewsList, checkToken, getNewsImageById} from '../api/api';
-// import {toDate} from '../utils/toDate'
+import {toDate} from '../utils/toDate'
 // 方式一： API 调用
 export default class Home extends React.Component {
   constructor(p) {
