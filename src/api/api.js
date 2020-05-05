@@ -55,7 +55,8 @@ export const refresh = (token) => {
 //获取新闻列表
 export const getNewsList = () => {
   return Axios({
-    url: 'https://minapp-test.hzcitybrain.com/phoneapi/getNewsList',
+    // url: 'https://minapp-test.hzcitybrain.com/phoneapi/getNewsList',
+    url: 'https://minapp-test.hzcitybrain.com/phoneapi/getnews',
     method: 'get',
     // data,
   });
@@ -77,6 +78,20 @@ export const getUserInfo = (token, data) => {
   return Axios({
     url:
       'https://health.hangzhou.gov.cn/health2/user/api/v1/oauth2/getUserInfo',
+    method: 'post',
+    headers: {
+      'content-type': 'application/json',
+      'user-token': token,
+    },
+    data,
+  });
+};
+
+//实名认证接口
+export const realNmAuth = (token, data) => {
+  return Axios({
+    url:
+      'https://health.hangzhou.gov.cn/health2/user/api/v1/oauth2/authentication/realName',
     method: 'post',
     headers: {
       'content-type': 'application/json',

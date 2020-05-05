@@ -18,7 +18,6 @@
 		2DCD954D1E0B4F2C00145EB5 /* hzcityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* hzcityTests.m */; };
 		31B14E98421C37E47E881BD5 /* libPods-hzcity-hzcityTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67922DBE41F224722019718F /* libPods-hzcity-hzcityTests.a */; };
 		60956B7DDCD50C17049699EE /* libPods-hzcity-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4FA1917A89DE72221E15DD9 /* libPods-hzcity-tvOS.a */; };
-		CC36D4172455693700755ED8 /* bundle in Resources */ = {isa = PBXBuildFile; fileRef = CC36D4162455693700755ED8 /* bundle */; };
 		D434073F17DAAAC0304709F0 /* libPods-hzcity-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4E83873FC7B2BF012F75792 /* libPods-hzcity-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +44,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* hzcityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hzcityTests.m; sourceTree = "<group>"; };
 		10A3C524F7AC3A4C1391AFCD /* Pods-hzcity-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hzcity-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-hzcity-tvOS/Pods-hzcity-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* hzcity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hzcity.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* 杭州城市大脑.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "杭州城市大脑.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = hzcity/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = hzcity/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -62,7 +61,6 @@
 		B667C24F18E1E4FE4780DE8F /* Pods-hzcity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hzcity.release.xcconfig"; path = "Target Support Files/Pods-hzcity/Pods-hzcity.release.xcconfig"; sourceTree = "<group>"; };
 		BDDDC2185B923BA3F9719CED /* libPods-hzcity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hzcity.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE26DB7A30480A8717F9569B /* Pods-hzcity-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hzcity-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-hzcity-tvOSTests/Pods-hzcity-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CC36D4162455693700755ED8 /* bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bundle; sourceTree = "<group>"; };
 		D4E83873FC7B2BF012F75792 /* libPods-hzcity-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hzcity-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4FA1917A89DE72221E15DD9 /* libPods-hzcity-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hzcity-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -126,7 +124,6 @@
 		13B07FAE1A68108700A75B9A /* hzcity */ = {
 			isa = PBXGroup;
 			children = (
-				CC36D4162455693700755ED8 /* bundle */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -176,7 +173,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* hzcity.app */,
+				13B07F961A680F5B00A75B9A /* 杭州城市大脑.app */,
 				00E356EE1AD99517003FC87E /* hzcityTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* hzcity-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* hzcity-tvOSTests.xctest */,
@@ -238,7 +235,7 @@
 			);
 			name = hzcity;
 			productName = hzcity;
-			productReference = 13B07F961A680F5B00A75B9A /* hzcity.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* 杭州城市大脑.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* hzcity-tvOS */ = {
@@ -341,7 +338,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Assets.xcassets in Resources */,
-				CC36D4172455693700755ED8 /* bundle in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -648,7 +644,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hzcity.app;
-				PRODUCT_NAME = hzcity;
+				PRODUCT_NAME = "杭州城市大脑";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -673,7 +669,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hzcity.app;
-				PRODUCT_NAME = hzcity;
+				PRODUCT_NAME = "杭州城市大脑";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
