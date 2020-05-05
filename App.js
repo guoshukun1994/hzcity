@@ -1,6 +1,6 @@
 import 'react-native-get-random-values';
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Button, Image, View, Platform} from 'react-native';
+import {StyleSheet, TouchableOpacity, Button, Image, View, Platform,SafeAreaView} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -14,9 +14,11 @@ import {
   Personal,
   People,
   About,
+  Advise
 } from './src/index';
 import storage from './src/store/index';
 import {checkToken} from './src/api/api';
+import SplashScreen from 'react-native-splash-screen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -157,73 +159,58 @@ export default class App extends React.Component {
       );
     };
     return (
-      <View style={{marginTop: 20, flex:1}}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Guide">
-          <Stack.Screen
-            name="Guide"
-            component={GuideScreen}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="NavFootTab"
-            component={NavFootTab}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="Login"
-            component={Login}
-            // options={Login.navigationOptions}
-            options={{
-              title: '登录',
-              headerStyle: {
-                backgroundColor: '#FFF',
-              },
-              headerBackTitle: ' '
-            }}
-            // options={{
-            //   title: 'login',
-            //   headerStyle: {
-            //     // backgroundColor: '#fff',
-            //     backgroundColor: 'red'
-            //   },
-            //   // headerTitleAlign: 'center',
-            //   headerBackTitle: ' ',
-            // }}
-          />
-          <Stack.Screen
-            name="WebView"
-            component={MyWebView}
-            options={
-              MyWebView.navigationOptions
-            }
-            // options={{
-            //   title: '热点新闻',
-            //   headerStyle: {
-            //     backgroundColor: '#fff',
-            //   },
-            //   headerTitleAlign: 'center',
-            // }}
-          />
-          <Stack.Screen
-            name="About"
-            component={About}
-            options={{
-              title: '关于',
-              headerStyle: {
-                backgroundColor: '#fff',
-              },
-              headerTitleAlign: 'center',
-              // headerBackTitle: ' '
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-      </View>
+      <SafeAreaView style={styles.safeArea}>
+            <NavigationContainer>
+              <Stack.Navigator initialRouteName="Guide">
+                <Stack.Screen
+                  name="Guide"
+                  component={GuideScreen}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="NavFootTab"
+                  component={NavFootTab}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+                <Stack.Screen
+                  name="Login"
+                  component={Login}
+                  // options={Login.navigationOptions}
+                  options={{
+                    title: '登录',
+                    headerStyle: {
+                      backgroundColor: '#FFF',
+                    },
+                    headerBackTitle: ' '
+                  }}
+                />
+                <Stack.Screen
+                  name="WebView"
+                  component={MyWebView}
+                  options={
+                    MyWebView.navigationOptions
+                  }
+                />
+                <Stack.Screen
+                  name="advise"
+                  component={Advise}
+                  options={{
+                    title: '建议反馈',
+                    headerStyle: {
+                      backgroundColor: '#fff',
+                    },
+                    headerTitleAlign: 'center',
+                    headerBackTitle: ' '
+                  }}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
+      </SafeAreaView>
+      
     );
   }
 }
@@ -233,6 +220,8 @@ const styles = StyleSheet.create({
     height: 25,
     width: 25,
   },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#ddd'
+  }
 });
-
-// export default App;
