@@ -255,6 +255,6 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    backgroundColor: '#ddd'
+    backgroundColor: 'rgba(0,0,0,0.7)'
   }
 });
