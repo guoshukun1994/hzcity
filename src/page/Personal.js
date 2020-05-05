@@ -32,36 +32,59 @@ export default class Personal extends React.Component {
   componentDidMount() {
     const {navigation} = this.props;
     this._unsubscribe = navigation.addListener('focus', async () => {
-      const token = await storage.load({key: 'token'});
-      getUserInfo(token.tokenDTO.userToken, {
-        code: token.tokenDTO.code,
-        userId: token.id,
-      }).then((res) => {
-        if (res.data) {
-          console.log(res.data)
-          let authSts = '未认证'
-          if (res.data.telephone.length == 11) {
-            res.data.telephone =
-              res.data.telephone.substring(0, 3) +
-              '****' +
-              res.data.telephone.substring(7, 12);
-          }
-          if(res.data.idCard != null){
-            console.log(res.data.idCard)
-            res.data.idCard = 
-            res.data.idCard.substring(0, 2) +
-              '**************' +
-            res.data.idCard.substring(14, 18);
-            this.setState({isAuth: true})
-            authSts = '已认证'
-            // this.setState({isAuth: false})
-          }
-          this.setState({
-            userInfo: {...res.data, authSts },
-            isLogin: true,
-          });
+        const userInfo = await storage.load({key: 'userInfo'})
+        let authSts = '未认证'
+        if (userInfo.telephone.length == 11) {
+          userInfo.telephone =
+          userInfo.telephone.substring(0, 3) +
+            '****' +
+            userInfo.telephone.substring(7, 12);
         }
-      });
+        if(userInfo.idCard != null){
+          console.log(userInfo.idCard)
+          userInfo.idCard = 
+          userInfo.idCard.substring(0, 2) +
+            '**************' +
+          userInfo.idCard.substring(14, 18);
+          this.setState({isAuth: true})
+          authSts = '已认证'
+          // this.setState({isAuth: false})
+        }
+        this.setState({
+          userInfo: {...userInfo, authSts },
+          isLogin: true,
+        });
+
+      // const token = await storage.load({key: 'token'});
+      // getUserInfo(token.tokenDTO.userToken, {
+      //   code: token.tokenDTO.code,
+      //   userId: token.id,
+      // }).then((res) => {
+      //   if (res.data) {
+      //     console.log(res.data)
+      //     let authSts = '未认证'
+      //     if (res.data.telephone.length == 11) {
+      //       res.data.telephone =
+      //         res.data.telephone.substring(0, 3) +
+      //         '****' +
+      //         res.data.telephone.substring(7, 12);
+      //     }
+      //     if(res.data.idCard != null){
+      //       console.log(res.data.idCard)
+      //       res.data.idCard = 
+      //       res.data.idCard.substring(0, 2) +
+      //         '**************' +
+      //       res.data.idCard.substring(14, 18);
+      //       this.setState({isAuth: true})
+      //       authSts = '已认证'
+      //       // this.setState({isAuth: false})
+      //     }
+      //     this.setState({
+      //       userInfo: {...res.data, authSts },
+      //       isLogin: true,
+      //     });
+      //   }
+      // });
     });
   }
   // componentWillUnmount() {
@@ -316,9 +339,14 @@ export default class Personal extends React.Component {
           cancelLabelText="取消"
           confirmLabelText="确定"
           confirmCallback={() => {
+            //将token\userInfo缓存置空
             storage.save({
               key: 'token',
-              data: '',
+              data: ''
+            });
+            storage.save({
+              key: 'userInfo',
+              data: ''
             });
             this.setState({
               userInfo: {},
