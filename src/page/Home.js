@@ -107,7 +107,7 @@ export default class Home extends React.Component {
     const {navigation} = this.props;
 
     return (
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
+      <ScrollView style={{flex: 1, backgroundColor: '#fff'}}>
         <View style={{height: 283}}>
           <Swiper
             style={styles.wrapper}
@@ -280,7 +280,7 @@ export default class Home extends React.Component {
           </View>
           {this._renderNewsList()}
         </ScrollView>
-      </View>
+      </ScrollView>
     );
   }
 }
