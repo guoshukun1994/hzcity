@@ -5,7 +5,8 @@ import {
     TextInput, 
     View, 
     Text,
-    Image
+    Image,
+    ScrollView
 } from 'react-native';
 import 'react-native-gesture-handler';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -46,11 +47,13 @@ export default class AuthPage extends React.Component {
   render() {
     const {navigation} = this.props;
     return (
-        <View style={{backgroundColor: '#fff',flex: 1,alignItems: "center"}}>
+        <ScrollView style={{flex:1}}>
+        <View style={{backgroundColor: '#fff',flex: 1,alignItems: "center",paddingBottom: 264}}>
              <Image
                   style={{
                     height: 43,
                     width: '100%',
+                    backgroundColor: '#377CFF'
                   }}
                   source={require('../assets/authTop.png')}></Image>
             <View style={{width: '100%',paddingLeft: 20}}>
@@ -87,7 +90,7 @@ export default class AuthPage extends React.Component {
                 style={{
                     width: '100%',
                     height: 40,
-                    marginHorizontal: 16
+                    // marginHorizontal: 16
                 }}
                 onPress={()=>{
                     if(!this.state.realName){
@@ -116,6 +119,7 @@ export default class AuthPage extends React.Component {
                     source={require('../assets/authbtn.png')} />
             </TouchableOpacity>
         </View>
+        </ScrollView>
     );
   }
 }

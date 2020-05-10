@@ -49,50 +49,49 @@ export default class GuideScreen extends Component {
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>用户协议与隐私政策</Text>
-              <ScrollView style={{height: '70%'}}>
-                <Text style={styles.privateText}>一，总则</Text>
-                <Text>
-                &emsp;&emsp;杭州城市大脑产品的所有权和运营权归杭州市数据资源管理局所有。用户在使用杭州城市大脑的服务之前，应当仔细阅读本协议，并同意遵守本协议后方可成为杭州城市大脑产品用户。一旦用户注册成功，则用户和杭州城市大脑产品之间自动形成协议关系，用户应当受本协议的约束。
-                </Text>
-                <Text>
-                &emsp;&emsp;本协议的修改归杭州市数据资源管理局所有，对用户不承担通知义务。用户应当随时关注本协议的修改，并决定是否继续使用杭州城市大脑提供的各项服务。
-                </Text>
-                <Text style={styles.privateText}>二，服务内容</Text>
-                <Text>
-                &emsp;&emsp;杭州城市大脑服务具体内容由杭州城市大脑根据实际情况提供，例如杭州城市大脑等。除非本使用协议另有其他明确规定，增加或加强目前本服务的任何新功能，包括所推出的新产品，均受到本使用协议之规范。
-                </Text>
-                <Text>
-                &emsp;&emsp;您了解并同意，本服务仅依其当前所呈现的状况提供，对于任何用户信息或者个人设定之时效，删除，传递错误，未予存储或其他任何问题，杭州城市大脑均不承担任何责任。杭州城市大脑保留不经事先通知为维修保养升级或其他目的的暂停本服务任何部分的权利。
-                </Text>
-                <Text style={styles.privateText}> 三，遵守法律</Text>
-                <Text>
-                &emsp;&emsp;您同意遵守中华人民共和国相关法律法规的所有规定并对任何方式使用您的密码和您的账号使用本服务的任何行为及结果承担全部责任。如您的行为违反国家法律法规的任何规定，有可能构成犯罪的，并由您承担全部法律责任，如果只要有理由认为您的行为，包括不限于您的任何言论和其他行为违反或者可能违反国家法律和法规的任何规定，只要可在任何时候不经任何事先通知终止向您提供服务。
-                </Text>
-                <Text style={styles.privateText}>四，您的注册义务</Text>
-                <Text>
-                &emsp;&emsp;为了能使用本服务，您同意以下事项：依本服务注册提示填写正确的手机号和密码若您提供任何违法，不道德或者质押认为不合适在杭州城市大脑上展示的资料;或者杭州城市大脑有理由怀疑您的资料属于程序或恶意操作，杭州城市大脑有权暂停或终止您的账号，并拒绝您于现在和未来使用本服务之全部或任何部分。
-                </Text>
-                <Text>
-                &emsp;&emsp;杭州城市大脑无须对任何用户的任何登记资料承担任何责任，包括但不限于鉴别，核实任何登记资料的真实性，正确性，完整性，适用性及是否为最新资料的责任。
-                </Text>
-                <Text style={styles.privateText}>五，隐私保护</Text>
-                <Text>
-                &emsp;&emsp;杭州城市大脑不对外公开或第三方提供单个用户的注册资料及用户在使用网络服务时存储在杭州城市大脑的非公开内容，但下列情况除外：
-                  1.事先获得用户的明确授权 2.根据有关法律法规要求
-                  3.按照相关政府主管部门的要求
-                  4.该第三方同意承担与杭州城市大脑同等保护用户隐私的责任
-                </Text>
-                <Text style={styles.privateText}>六，附则</Text>
-                <Text>
-                &emsp;&emsp;本协议的订立，执行和解释及争议的解决均应适用中华人民共和国法律
-                  如本协议中的任何条款无论因何种原因完全或者部分无效或不具有执行力
-                  本协议的其余条款仍应有效并且具有约束力
-                  本协议解释权及修订归杭州市数据资源管理局所有
-                </Text>
+              <ScrollView style={{height: '70%',paddingHorizontal: 30}}>
+                  <Text style={styles.privateText}>一，总则</Text>
+                  <Text>
+                  &emsp;&emsp;杭州城市大脑产品的所有权和运营权归杭州市数据资源管理局所有。用户在使用杭州城市大脑的服务之前，应当仔细阅读本协议，并同意遵守本协议后方可成为杭州城市大脑产品用户。一旦用户注册成功，则用户和杭州城市大脑产品之间自动形成协议关系，用户应当受本协议的约束。
+                  </Text>
+                  <Text>
+                  &emsp;&emsp;本协议的修改归杭州市数据资源管理局所有，对用户不承担通知义务。用户应当随时关注本协议的修改，并决定是否继续使用杭州城市大脑提供的各项服务。
+                  </Text>
+                  <Text style={styles.privateText}>二，服务内容</Text>
+                  <Text>
+                  &emsp;&emsp;杭州城市大脑服务具体内容由杭州城市大脑根据实际情况提供，例如杭州城市大脑等。除非本使用协议另有其他明确规定，增加或加强目前本服务的任何新功能，包括所推出的新产品，均受到本使用协议之规范。
+                  </Text>
+                  <Text>
+                  &emsp;&emsp;您了解并同意，本服务仅依其当前所呈现的状况提供，对于任何用户信息或者个人设定之时效，删除，传递错误，未予存储或其他任何问题，杭州城市大脑均不承担任何责任。杭州城市大脑保留不经事先通知为维修保养升级或其他目的的暂停本服务任何部分的权利。
+                  </Text>
+                  <Text style={styles.privateText}> 三，遵守法律</Text>
+                  <Text>
+                  &emsp;&emsp;您同意遵守中华人民共和国相关法律法规的所有规定并对任何方式使用您的密码和您的账号使用本服务的任何行为及结果承担全部责任。如您的行为违反国家法律法规的任何规定，有可能构成犯罪的，并由您承担全部法律责任，如果只要有理由认为您的行为，包括不限于您的任何言论和其他行为违反或者可能违反国家法律和法规的任何规定，只要可在任何时候不经任何事先通知终止向您提供服务。
+                  </Text>
+                  <Text style={styles.privateText}>四，您的注册义务</Text>
+                  <Text>
+                  &emsp;&emsp;为了能使用本服务，您同意以下事项：依本服务注册提示填写正确的手机号和密码若您提供任何违法，不道德或者质押认为不合适在杭州城市大脑上展示的资料;或者杭州城市大脑有理由怀疑您的资料属于程序或恶意操作，杭州城市大脑有权暂停或终止您的账号，并拒绝您于现在和未来使用本服务之全部或任何部分。
+                  </Text>
+                  <Text>
+                  &emsp;&emsp;杭州城市大脑无须对任何用户的任何登记资料承担任何责任，包括但不限于鉴别，核实任何登记资料的真实性，正确性，完整性，适用性及是否为最新资料的责任。
+                  </Text>
+                  <Text style={styles.privateText}>五，隐私保护</Text>
+                  <Text>
+                  &emsp;&emsp;杭州城市大脑不对外公开或第三方提供单个用户的注册资料及用户在使用网络服务时存储在杭州城市大脑的非公开内容，但下列情况除外：
+                    1.事先获得用户的明确授权 2.根据有关法律法规要求
+                    3.按照相关政府主管部门的要求
+                    4.该第三方同意承担与杭州城市大脑同等保护用户隐私的责任
+                  </Text>
+                  <Text style={styles.privateText}>六，附则</Text>
+                  <Text>
+                  &emsp;&emsp;本协议的订立，执行和解释及争议的解决均应适用中华人民共和国法律
+                    如本协议中的任何条款无论因何种原因完全或者部分无效或不具有执行力
+                    本协议的其余条款仍应有效并且具有约束力
+                    本协议解释权及修订归杭州市数据资源管理局所有
+                  </Text>
               </ScrollView>
-              <View style={styles.modalBotoom}>
+              <View style={styles.modalBottom}>
                 <TouchableOpacity
-                  style={{...styles.openButton}}
                   onPress={() => {
                     this.setState({
                       value: '',
@@ -102,7 +101,6 @@ export default class GuideScreen extends Component {
                   <Text style={{...styles.textStyle,color: '#747474'}}>不同意</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={{...styles.openButton}}
                   onPress={() => {
                     this.setState({
                       modalVisible: false,
@@ -120,7 +118,6 @@ export default class GuideScreen extends Component {
           </View>
         </Modal>
         <Swiper
-          style={styles.wrapper}
           showsButtons={true}
           showsPagination={true}
           showsButtons={false}
@@ -219,9 +216,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  wrapper: {
-    // flex: 1,
-  },
   slide1: {
     flex: 1,
   },
@@ -245,46 +239,30 @@ const styles = StyleSheet.create({
 
   // 以下为modal组件的样式
   centeredView: {
-    flex: 1,
-    justifyContent: 'center',
+    flex:1, 
+    justifyContent: 'center', 
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-  },
-  modalBotoom: {
-    flexDirection: 'row',
-    justifyContent: "space-between",
-    height: 10,
-    marginTop: 8
+    backgroundColor: 'rgba(0,0,0,0.3)' 
   },
   modalView: {
-    width: '80%',
-    margin: 20,
-    backgroundColor: 'white',
-    padding: 30,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  openButton: {
-    width: 120,
-    height: 20,
     backgroundColor: '#fff',
-    marginLeft: -15
- },
-  textStyle: {
-    fontWeight: 'bold',
-    textAlign: 'center',
-    fontSize: 18
+    width: '80%'
   },
   modalText: {
-    bottom: 15,
-    textAlign: 'center',
-    fontSize: 16,
-    fontWeight: "bold"
+    height: 40, 
+    lineHeight: 40, 
+    textAlign: "center", 
+    fontSize: 16, 
+    fontWeight: "bold" 
   },
+  modalBottom: { 
+    height: 50, 
+    flexDirection: 'row', 
+    justifyContent: 'space-around', 
+    alignItems: 'center'  
+  },
+  textStyle: {
+    fontWeight: 'bold',
+    fontSize: 18
+  }
 });

@@ -179,7 +179,6 @@ export default class App extends React.Component {
           <Stack.Screen
             name="Login"
             component={Login}
-            // options={Login.navigationOptions}
             options={{
               title: '登录',
               headerStyle: {
@@ -192,14 +191,6 @@ export default class App extends React.Component {
             name="WebView"
             component={MyWebView}
             options={MyWebView.navigationOptions}
-
-            // options={{
-            //   title: '热点新闻',
-            //   headerStyle: {
-            //     backgroundColor: '#fff',
-            //   },
-            //   headerTitleAlign: 'center',
-            // }}
           />
           <Stack.Screen
             name="advise"
@@ -232,8 +223,7 @@ export default class App extends React.Component {
             options={{
               title: '实名认证',
               headerStyle: {
-                backgroundColor: '#377CFF',
-                borderBottomWidth: 0
+                backgroundColor: '#377CFF'
               },
               headerTitleStyle:{
                  color: '#fff'
@@ -264,5 +254,3 @@ const styles = StyleSheet.create({
     width: 25,
   },
 });
-
-// export default App;
