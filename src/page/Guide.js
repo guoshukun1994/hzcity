@@ -124,7 +124,7 @@ export default class GuideScreen extends Component {
           showsButtons={true}
           showsPagination={true}
           showsButtons={false}
-          loop={false}
+          loop={true}
           paginationStyle={
             {bottom: 10}
             // 主要分成三屏，三个View
