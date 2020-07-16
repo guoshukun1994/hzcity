@@ -25,6 +25,8 @@ export default class Home extends React.Component {
   }
   componentDidMount() {
     getNewsList().then((res) => {
+      console.log(res.data);
+      
       this.setState({
         newsList: res.data,
       });
